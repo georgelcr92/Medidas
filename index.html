@@ -292,10 +292,10 @@
         const formats = [
             { id: 'f1', size: '20x20', price: 8000, cat: 'cuadrado' },
             { id: 'f2', size: '30x30', price: 12000, cat: 'cuadrado' },
-            { id: 'f3', size: '40x40', price: 16000, cat: 'cuadrado' },
+            { id: 'f3', size: '40x40', price: 18000, cat: 'cuadrado' }, // Actualizado +2000
             { id: 'f4', size: '60x60', price: 49000, cat: 'cuadrado', master: true },
             { id: 'f5', size: '20x30', price: 10000, cat: 'rectangulo' },
-            { id: 'f6', size: '40x30', price: 14000, cat: 'rectangulo' },
+            { id: 'f6', size: '40x30', price: 15000, cat: 'rectangulo' }, // Actualizado +1000
             { id: 'f7', size: '60x40', price: 20000, cat: 'rectangulo' },
             { id: 'f8', size: '60x90', price: 59000, cat: 'rectangulo', master: true }
         ];
@@ -317,13 +317,10 @@
         let selectedAddons = new Set();
 
         function switchCategory(cat, btn) {
-            // REINICIO DE VALORES AL CAMBIAR CATEGORÍA
             selectedFormat = null;
             selectedAddons.clear();
-            
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
             renderFormats(cat);
             renderOptions();
             resetSummary();
@@ -349,12 +346,10 @@
         function selectFormat(f) {
             selectedFormat = f;
             selectedAddons.clear();
-            
             const availableSupports = addons.filter(a => a.type === 'unica' && a.sizes.includes(f.size));
             if (availableSupports.length === 1) {
                 selectedAddons.add(availableSupports[0].id);
             }
-
             renderFormats(f.cat);
             renderOptions();
             updateTotal();
@@ -365,9 +360,7 @@
             const extrasList = document.getElementById('extras-list');
             displayList.innerHTML = '';
             extrasList.innerHTML = '';
-
             if(!selectedFormat) return;
-
             addons.forEach(a => {
                 if (a.sizes.includes(selectedFormat.size) || a.sizes.includes('all')) {
                     const isSelected = selectedAddons.has(a.id);
