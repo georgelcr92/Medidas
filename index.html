@@ -106,11 +106,13 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        .section-header { margin-bottom: 0.8rem; }
+
         .section-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 0.75rem;
             color: var(--neon-pink);
-            margin-bottom: 12px;
+            margin-bottom: 4px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -122,6 +124,14 @@
             flex: 1;
             height: 1px;
             background: var(--border);
+        }
+
+        .note-burned {
+            font-size: 0.7rem;
+            color: var(--neon-cyan);
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
         }
 
         .cards-grid {
@@ -202,7 +212,6 @@
         .summary-label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
         .summary-value { font-family: 'Orbitron'; font-size: 1.2rem; color: #fff; }
 
-        /* ESTADO DESHABILITADO */
         .btn-order {
             width: 100%;
             background: var(--neon-cyan);
@@ -241,17 +250,26 @@
 
     <div class="scroll-area">
         <section>
-            <span class="section-title">1. Formato Metal Print</span>
+            <div class="section-header">
+                <span class="section-title">1. Elige tu Formato</span>
+                <span class="note-burned">METAL PRINT HD + CAJA INCLUIDA</span>
+            </div>
             <div id="format-container" class="cards-grid"></div>
         </section>
 
         <section>
-            <span class="section-title">2. Soporte de Exhibición</span>
+            <div class="section-header">
+                <span class="section-title">2. Soporte de Exhibición</span>
+                <span class="note-burned">SELECCIÓN ÚNICA</span>
+            </div>
             <div id="display-list" class="option-list"></div>
         </section>
 
         <section>
-            <span class="section-title">3. Detalles de Regalo</span>
+            <div class="section-header">
+                <span class="section-title">3. Extras Emocionales</span>
+                <span class="note-burned">DETALLES DE REGALO</span>
+            </div>
             <div id="extras-list" class="option-list"></div>
         </section>
     </div>
@@ -299,9 +317,17 @@
         let selectedAddons = new Set();
 
         function switchCategory(cat, btn) {
+            // REINICIO DE VALORES AL CAMBIAR CATEGORÍA
+            selectedFormat = null;
+            selectedAddons.clear();
+            
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            
             renderFormats(cat);
+            renderOptions();
+            resetSummary();
+            checkButton();
         }
 
         function renderFormats(cat) {
@@ -376,6 +402,11 @@
             } else {
                 btn.classList.remove('enabled');
             }
+        }
+
+        function resetSummary() {
+            document.getElementById('total-display').innerText = `₡0`;
+            document.getElementById('size-display').innerText = `-`;
         }
 
         function updateTotal() {
