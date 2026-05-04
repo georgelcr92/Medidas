@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Big Foto CR | Mobile Studio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@400;700&display=swap');
+
+        :root {
+            --bg-black: #010103;
+            --neon-pink: #ff007a;
+            --neon-cyan: #00f2ff;
+            --premium-gold: #ffcc00;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg-black);
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 0, 122, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+        }
+
+        header { padding: 1.5rem 1rem 1rem; text-align: center; flex-shrink: 0; }
+
+        .floating-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 122, 0.6));
+            animation: floatText 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        header p {
+            color: var(--neon-pink);
+            font-size: 0.65rem;
+            font-weight: bold;
+            margin: 8px 0 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .exclusive-banner {
+            background: var(--premium-gold);
+            color: #000;
+            font-size: 0.55rem;
+            font-weight: 900;
+            padding: 6px 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            padding: 1rem;
+            flex-shrink: 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: #aaa;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Orbitron';
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+
+        .tab-btn.active {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        .scroll-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 0 1rem 250px; 
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: var(--neon-pink);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .format-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 20px 10px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .format-card.active {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        .format-card.master { border-color: var(--premium-gold); }
+        .format-card.master.active { background: rgba(255, 204, 0, 0.1); }
+
+        .master-badge {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--premium-gold);
+            color: #000;
+            font-size: 0.4rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .format-card h4 { font-size: 1rem; margin: 0 0 5px; font-weight: 700; }
+        .format-card .price { color: var(--neon-cyan); font-weight: 700; font-size: 0.9rem; }
+
+        .option-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .option-item {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-item.selected {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(1, 1, 3, 0.98);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--border);
+            padding: 1.2rem 1rem calc(1rem + env(safe-area-inset-bottom));
+            z-index: 20;
+        }
+
+        .summary-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 12px;
+        }
+
+        .summary-label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+        .summary-value { font-family: 'Orbitron'; font-size: 1.2rem; color: #fff; }
+
+        /* ESTADO DESHABILITADO */
+        .btn-order {
+            width: 100%;
+            background: var(--neon-cyan);
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-family: 'Orbitron';
+            font-weight: 900;
+            text-transform: uppercase;
+            opacity: 0.3;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .btn-order.enabled {
+            opacity: 1;
+            pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="exclusive-banner">Únicos en Costa Rica: Calidad Exhibición & Gran Formato</div>
+
+    <header>
+        <div class="floating-text">BIG FOTO CR</div>
+        <p>METAL PRINT HD CONFIGURATOR</p>
+    </header>
+
+    <div class="category-tabs">
+        <button class="tab-btn active" onclick="switchCategory('cuadrado', this)">Cuadrados</button>
+        <button class="tab-btn" onclick="switchCategory('rectangulo', this)">Rectangulares</button>
+    </div>
+
+    <div class="scroll-area">
+        <section>
+            <span class="section-title">1. Formato Metal Print</span>
+            <div id="format-container" class="cards-grid"></div>
+        </section>
+
+        <section>
+            <span class="section-title">2. Soporte de Exhibición</span>
+            <div id="display-list" class="option-list"></div>
+        </section>
+
+        <section>
+            <span class="section-title">3. Detalles de Regalo</span>
+            <div id="extras-list" class="option-list"></div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="summary-info">
+            <div>
+                <div class="summary-label">Total Estimado</div>
+                <div id="total-display" class="summary-value">₡0</div>
+            </div>
+            <div style="text-align: right">
+                <div class="summary-label">Selección</div>
+                <div id="size-display" style="font-size: 0.8rem; font-weight: bold; color: var(--neon-cyan);">-</div>
+            </div>
+        </div>
+        <button id="order-btn" class="btn-order" onclick="sendWhatsApp()">Realizar Pedido</button>
+    </footer>
+
+    <script>
+        const formats = [
+            { id: 'f1', size: '20x20', price: 8000, cat: 'cuadrado' },
+            { id: 'f2', size: '30x30', price: 12000, cat: 'cuadrado' },
+            { id: 'f3', size: '40x40', price: 16000, cat: 'cuadrado' },
+            { id: 'f4', size: '60x60', price: 49000, cat: 'cuadrado', master: true },
+            { id: 'f5', size: '20x30', price: 10000, cat: 'rectangulo' },
+            { id: 'f6', size: '40x30', price: 14000, cat: 'rectangulo' },
+            { id: 'f7', size: '60x40', price: 20000, cat: 'rectangulo' },
+            { id: 'f8', size: '60x90', price: 59000, cat: 'rectangulo', master: true }
+        ];
+
+        const addons = [
+            { id: 1, name: "Portarretratos", price: 2000, type: "unica", sizes: ["20x20", "20x30"] },
+            { id: 2, name: "Cuñas Soporte", price: 2500, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"] },
+            { id: 3, name: "Bastidor Infinity", price: 4000, type: "unica", sizes: ["40x30", "40x40"] },
+            { id: 4, name: "Bastidor Infinity", price: 5000, type: "unica", sizes: ["60x40"] },
+            { id: 5, name: "Bastidor Infinity", price: 8000, type: "unica", sizes: ["60x60"] },
+            { id: 6, name: "Bastidor Infinity", price: 10000, type: "unica", sizes: ["60x90"] },
+            { id: 7, name: "Imán Big Foto (Doble)", price: 6000, type: "unica", sizes: ["60x40"] },
+            { id: 8, name: "Imán Big Foto", price: 3000, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"] },
+            { id: 9, name: "Dedicatoria", price: 2500, type: "opcional", sizes: ["all"] },
+            { id: 10, name: "Carta Opalina", price: 1500, type: "opcional", sizes: ["all"] }
+        ];
+
+        let selectedFormat = null;
+        let selectedAddons = new Set();
+
+        function switchCategory(cat, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderFormats(cat);
+        }
+
+        function renderFormats(cat) {
+            const container = document.getElementById('format-container');
+            container.innerHTML = '';
+            formats.filter(f => f.cat === cat).forEach(f => {
+                const div = document.createElement('div');
+                div.className = `format-card ${f.master ? 'master' : ''} ${selectedFormat && selectedFormat.id === f.id ? 'active' : ''}`;
+                div.onclick = () => selectFormat(f);
+                div.innerHTML = `
+                    ${f.master ? '<span class="master-badge">CALIDAD EXHIBICIÓN</span>' : ''}
+                    <h4>${f.size} cm</h4>
+                    <span class="price">₡${f.price.toLocaleString()}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function selectFormat(f) {
+            selectedFormat = f;
+            selectedAddons.clear();
+            
+            const availableSupports = addons.filter(a => a.type === 'unica' && a.sizes.includes(f.size));
+            if (availableSupports.length === 1) {
+                selectedAddons.add(availableSupports[0].id);
+            }
+
+            renderFormats(f.cat);
+            renderOptions();
+            updateTotal();
+        }
+
+        function renderOptions() {
+            const displayList = document.getElementById('display-list');
+            const extrasList = document.getElementById('extras-list');
+            displayList.innerHTML = '';
+            extrasList.innerHTML = '';
+
+            if(!selectedFormat) return;
+
+            addons.forEach(a => {
+                if (a.sizes.includes(selectedFormat.size) || a.sizes.includes('all')) {
+                    const isSelected = selectedAddons.has(a.id);
+                    const html = `
+                        <div class="option-item ${isSelected ? 'selected' : ''}" onclick="toggleAddon(${a.id}, '${a.type}')">
+                            <span style="font-size:0.9rem;">${a.name}</span>
+                            <span style="color:var(--neon-cyan); font-weight:bold;">₡${a.price.toLocaleString()}</span>
+                        </div>
+                    `;
+                    if (a.type === 'unica') displayList.innerHTML += html;
+                    else extrasList.innerHTML += html;
+                }
+            });
+            checkButton();
+        }
+
+        function toggleAddon(id, type) {
+            if (type === 'unica') {
+                addons.filter(a => a.type === 'unica').forEach(a => selectedAddons.delete(a.id));
+            }
+            if (selectedAddons.has(id)) selectedAddons.delete(id);
+            else selectedAddons.add(id);
+            renderOptions();
+            updateTotal();
+        }
+
+        function checkButton() {
+            const btn = document.getElementById('order-btn');
+            const hasSupport = Array.from(selectedAddons).some(id => addons.find(a => a.id === id).type === 'unica');
+            if (selectedFormat && hasSupport) {
+                btn.classList.add('enabled');
+            } else {
+                btn.classList.remove('enabled');
+            }
+        }
+
+        function updateTotal() {
+            if(!selectedFormat) return;
+            let total = selectedFormat.price;
+            selectedAddons.forEach(id => {
+                total += addons.find(a => a.id === id).price;
+            });
+            document.getElementById('total-display').innerText = `₡${total.toLocaleString()}`;
+            document.getElementById('size-display').innerText = `${selectedFormat.size} cm`;
+        }
+
+        function sendWhatsApp() {
+            const items = Array.from(selectedAddons).map(id => addons.find(a => a.id === id).name);
+            let total = selectedFormat.price;
+            selectedAddons.forEach(id => total += addons.find(a => a.id === id).price);
+            const msg = `¡Hola Big Foto CR! Deseo realizar un pedido:\n\n• Formato: ${selectedFormat.size}\n• Extras: ${items.join(', ') || 'Básico'}\n• Total: ₡${total.toLocaleString()}\n\nQuedo atento(a) para el diseño.`;
+            window.open(`https://wa.me/50688466111?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        window.onload = () => { renderFormats('cuadrado'); renderOptions(); };
+    </script>
+</body>
+</html>
