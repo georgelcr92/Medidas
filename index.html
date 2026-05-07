@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Big Foto CR | Mobile Studio</title>
+    <title>Big Foto CR | Master Studio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@400;600;700&display=swap');
 
         :root {
             --bg-black: #010103;
@@ -13,7 +13,7 @@
             --neon-cyan: #00f2ff;
             --premium-gold: #ffcc00;
             --glass: rgba(255, 255, 255, 0.08);
-            --border: rgba(255, 255, 255, 0.12);
+            --border: rgba(255, 255, 255, 0.15);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -28,15 +28,15 @@
             flex-direction: column;
             overflow: hidden;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 0, 122, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 50% 0%, rgba(255, 0, 122, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.12) 0%, transparent 50%);
         }
 
-        header { padding: 1.5rem 1rem 1rem; text-align: center; flex-shrink: 0; }
+        header { padding: 1.5rem 1rem 0.5rem; text-align: center; flex-shrink: 0; }
 
         .floating-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 900;
             background: linear-gradient(90deg, #fff, var(--neon-cyan));
             -webkit-background-clip: text;
@@ -46,202 +46,152 @@
             display: inline-block;
         }
 
-        @keyframes floatText {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+        @keyframes floatText { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
+        /* COLOR ROSADO NEÓN PARA EL SUBTÍTULO DEL HEADER */
         header p {
             color: var(--neon-pink);
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            margin: 8px 0 0;
+            margin: 10px 0 0;
             letter-spacing: 3px;
             text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .exclusive-banner {
             background: var(--premium-gold);
             color: #000;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: 900;
-            padding: 6px 0;
+            padding: 8px 0;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2);
         }
 
-        .category-tabs {
-            display: flex;
-            gap: 10px;
-            padding: 1rem;
-            flex-shrink: 0;
-        }
-
-        .tab-btn {
-            flex: 1;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            color: #aaa;
+        #wow-badge {
+            display: none;
+            background: linear-gradient(45deg, var(--neon-pink), var(--premium-gold));
+            color: #000;
             padding: 12px;
+            margin: 10px 1rem 0;
             border-radius: 8px;
+            text-align: center;
             font-family: 'Orbitron';
-            font-size: 0.65rem;
-            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 0.75rem;
+            animation: pulse 1s infinite;
         }
 
-        .tab-btn.active {
-            border-color: var(--neon-cyan);
-            color: var(--neon-cyan);
-            background: rgba(0, 242, 255, 0.1);
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+        .category-tabs { display: flex; gap: 12px; padding: 1rem; flex-shrink: 0; }
+        .tab-btn {
+            flex: 1; background: var(--glass); border: 1px solid var(--border);
+            color: #aaa; padding: 14px; border-radius: 10px;
+            font-family: 'Orbitron'; font-size: 0.7rem; text-transform: uppercase;
         }
+        .tab-btn.active { border-color: var(--neon-cyan); color: #fff; background: rgba(0, 242, 255, 0.15); }
 
         .scroll-area {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 0 1rem 250px; 
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            flex-grow: 1; overflow-y: auto; padding: 0 1rem 340px; 
+            display: flex; flex-direction: column; gap: 2.2rem;
             -webkit-overflow-scrolling: touch;
         }
 
-        .section-header { margin-bottom: 0.8rem; }
-
+        .section-header { margin-bottom: 1.2rem; border-left: 3px solid var(--neon-pink); padding-left: 12px; }
         .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
-            color: var(--neon-pink);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif; font-size: 0.85rem;
+            color: var(--neon-pink); margin-bottom: 6px; display: block;
+            text-transform: uppercase; letter-spacing: 1px;
         }
+        .note-burned { font-size: 0.7rem; color: var(--neon-cyan); font-weight: 700; text-transform: uppercase; display: block; line-height: 1.3; letter-spacing: 0.5px; }
+        .desc-text { font-size: 0.85rem; color: #bbb; line-height: 1.4; margin-top: 8px; }
 
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .note-burned {
-            font-size: 0.7rem;
-            color: var(--neon-cyan);
-            font-weight: 700;
-            text-transform: uppercase;
-            display: block;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
+        .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .format-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 20px 10px;
-            border-radius: 12px;
-            text-align: center;
-            position: relative;
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 22px 10px; border-radius: 12px; text-align: center; position: relative;
         }
-
-        .format-card.active {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 242, 255, 0.1);
-        }
-
+        .format-card.active { border-color: var(--neon-cyan); background: rgba(0, 242, 255, 0.1); }
         .format-card.master { border-color: var(--premium-gold); }
-        .format-card.master.active { background: rgba(255, 204, 0, 0.1); }
-
         .master-badge {
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--premium-gold);
-            color: #000;
-            font-size: 0.4rem;
-            font-weight: 900;
-            padding: 2px 6px;
-            border-radius: 4px;
-            white-space: nowrap;
+            position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+            background: var(--premium-gold); color: #000; font-size: 0.4rem;
+            font-weight: 900; padding: 2px 6px; border-radius: 4px; white-space: nowrap;
         }
 
-        .format-card h4 { font-size: 1rem; margin: 0 0 5px; font-weight: 700; }
-        .format-card .price { color: var(--neon-cyan); font-weight: 700; font-size: 0.9rem; }
+        .format-card h4 { font-size: 1rem; margin: 0 0 5px; font-weight: 700; color: #fff; }
+        .format-card .price { color: var(--neon-cyan); font-weight: 900; font-size: 0.95rem; }
 
         .option-list { display: flex; flex-direction: column; gap: 8px; }
-
         .option-item {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 16px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 20px; border-radius: 12px; display: flex;
+            flex-direction: column; gap: 12px;
         }
+        .option-item.selected { border-color: var(--neon-cyan); background: rgba(0, 242, 255, 0.15); }
+        .option-main { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
-        .option-item.selected {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 242, 255, 0.1);
+        .preview-thumb-container {
+            display: flex; align-items: center; gap: 15px; margin-top: 10px; display: none;
+            padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px;
         }
+        .option-item.selected .preview-thumb-container { display: flex; }
+        .preview-thumb { width: 90px; height: 90px; border-radius: 8px; object-fit: cover; border: 2px solid var(--neon-cyan); }
+        .view-label { font-size: 0.65rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: bold; }
 
         footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(1, 1, 3, 0.98);
-            backdrop-filter: blur(15px);
+            position: fixed; bottom: 0; width: 100%;
+            background: rgba(1, 1, 3, 0.98); backdrop-filter: blur(15px);
             border-top: 1px solid var(--border);
-            padding: 1.2rem 1rem calc(1rem + env(safe-area-inset-bottom));
+            padding: 1.2rem 1rem calc(1.2rem + env(safe-area-inset-bottom));
             z-index: 20;
         }
 
-        .summary-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 12px;
+        .quantity-control {
+            display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 18px;
+            opacity: 0.1; pointer-events: none; transition: 0.3s;
         }
-
-        .summary-label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
-        .summary-value { font-family: 'Orbitron'; font-size: 1.2rem; color: #fff; }
+        .quantity-control.enabled { opacity: 1; pointer-events: auto; }
+        .qty-btn {
+            background: var(--glass); border: 1px solid var(--neon-cyan); color: #fff;
+            width: 40px; height: 40px; border-radius: 50%; font-family: 'Orbitron'; font-size: 1.3rem;
+            display: flex; justify-content: center; align-items: center;
+        }
 
         .btn-order {
-            width: 100%;
-            background: var(--neon-cyan);
-            color: #000;
-            border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-family: 'Orbitron';
-            font-weight: 900;
-            text-transform: uppercase;
-            opacity: 0.3;
-            pointer-events: none;
-            transition: 0.3s;
+            width: 100%; background: var(--neon-cyan); color: #000; border: none;
+            padding: 18px; border-radius: 12px; font-family: 'Orbitron';
+            font-weight: 900; text-transform: uppercase; opacity: 0.3; pointer-events: none;
         }
+        .btn-order.enabled { opacity: 1; pointer-events: auto; box-shadow: 0 4px 20px rgba(0, 242, 255, 0.4); }
 
-        .btn-order.enabled {
-            opacity: 1;
-            pointer-events: auto;
-            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.4);
+        #imageModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.96); z-index: 100; justify-content: center; align-items: center;
+            flex-direction: column;
         }
+        #imageModal img { max-width: 85%; max-height: 75vh; border-radius: 15px; border: 3px solid var(--premium-gold); object-fit: contain; }
     </style>
 </head>
 <body>
 
-    <div class="exclusive-banner">Únicos en Costa Rica: Calidad Exhibición & Gran Formato</div>
+    <div id="imageModal" onclick="this.style.display='none'">
+        <img id="modalImg" src="">
+        <p style="margin-top: 25px; font-family: 'Orbitron'; color: var(--neon-cyan); font-size: 0.8rem; letter-spacing: 2px;">CERRAR VISTA</p>
+    </div>
+
+    <div class="exclusive-banner">ÚNICOS EN COSTA RICA: CALIDAD EXHIBICIÓN & GRAN FORMATO</div>
 
     <header>
         <div class="floating-text">BIG FOTO CR</div>
         <p>METAL PRINT HD CONFIGURATOR</p>
     </header>
+
+    <div id="wow-badge">¡WOW 3!! UN BUEN CLIENTE MERECE LO MEJOR.<br>PREGUNTA POR NUESTROS PAQUETES.</div>
 
     <div class="category-tabs">
         <button class="tab-btn active" onclick="switchCategory('cuadrado', this)">Cuadrados</button>
@@ -251,8 +201,9 @@
     <div class="scroll-area">
         <section>
             <div class="section-header">
-                <span class="section-title">1. Elige tu Formato</span>
-                <span class="note-burned">METAL PRINT HD + CAJA INCLUIDA</span>
+                <span class="section-title">1. Selecciona el Formato</span>
+                <span id="cat-note" class="note-burned">METAL PRINT HD + RETOQUE PROFESIONAL + PACKAGING DE LUJO (Burbuja, Mantequilla y Caja)</span>
+                <p id="cat-desc" class="desc-text">Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto al alinearlos (p.ej. 2 piezas cuadradas a los lados de una rectangular central).</p>
             </div>
             <div id="format-container" class="cards-grid"></div>
         </section>
@@ -260,29 +211,37 @@
         <section>
             <div class="section-header">
                 <span class="section-title">2. Soporte de Exhibición</span>
-                <span class="note-burned">SELECCIÓN ÚNICA</span>
+                <span class="note-burned">CONFIGURACIÓN DE MONTAJE PREMIUM</span>
+                <p class="desc-text">Resalta el brillo y la nitidez de tu fotografía con sistemas de montaje exclusivos.</p>
             </div>
             <div id="display-list" class="option-list"></div>
         </section>
 
         <section>
             <div class="section-header">
-                <span class="section-title">3. Extras Emocionales</span>
-                <span class="note-burned">DETALLES DE REGALO</span>
+                <span class="section-title">3. Detalles de Regalo</span>
+                <span class="note-burned">EXTRAS EMOCIONALES</span>
+                <p class="desc-text">Aumenta el impacto emocional con detalles de presentación única.</p>
             </div>
             <div id="extras-list" class="option-list"></div>
         </section>
     </div>
 
     <footer>
-        <div class="summary-info">
+        <div id="qtyControl" class="quantity-control">
+            <span style="font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: bold;">Cantidad:</span>
+            <button class="qty-btn" onclick="updateQty(-1)">-</button>
+            <span id="qtyNumber" style="font-family:'Orbitron'; font-size: 1.4rem; color: var(--neon-cyan); font-weight: 900;">1</span>
+            <button class="qty-btn" onclick="updateQty(1)">+</button>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
             <div>
-                <div class="summary-label">Total Estimado</div>
-                <div id="total-display" class="summary-value">₡0</div>
+                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600;">Total Pedido</div>
+                <div id="total-display" style="font-family:'Orbitron'; font-size: 1.3rem; font-weight: 900; color: #fff;">₡0</div>
             </div>
-            <div style="text-align: right">
-                <div class="summary-label">Selección</div>
-                <div id="size-display" style="font-size: 0.8rem; font-weight: bold; color: var(--neon-cyan);">-</div>
+            <div style="text-align: right;">
+                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600;">Formato</div>
+                <div id="size-display" style="color: var(--neon-cyan); font-weight: bold; font-size: 1rem;">-</div>
             </div>
         </div>
         <button id="order-btn" class="btn-order" onclick="sendWhatsApp()">Realizar Pedido</button>
@@ -292,39 +251,44 @@
         const formats = [
             { id: 'f1', size: '20x20', price: 8000, cat: 'cuadrado' },
             { id: 'f2', size: '30x30', price: 12000, cat: 'cuadrado' },
-            { id: 'f3', size: '40x40', price: 18000, cat: 'cuadrado' }, // Actualizado +2000
+            { id: 'f3', size: '40x40', price: 18000, cat: 'cuadrado' },
             { id: 'f4', size: '60x60', price: 49000, cat: 'cuadrado', master: true },
             { id: 'f5', size: '20x30', price: 10000, cat: 'rectangulo' },
-            { id: 'f6', size: '40x30', price: 15000, cat: 'rectangulo' }, // Actualizado +1000
+            { id: 'f6', size: '40x30', price: 15000, cat: 'rectangulo' },
             { id: 'f7', size: '60x40', price: 20000, cat: 'rectangulo' },
             { id: 'f8', size: '60x90', price: 59000, cat: 'rectangulo', master: true }
         ];
 
         const addons = [
-            { id: 1, name: "Portarretratos", price: 2000, type: "unica", sizes: ["20x20", "20x30"] },
-            { id: 2, name: "Cuñas Soporte", price: 2500, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"] },
-            { id: 3, name: "Bastidor Infinity", price: 4000, type: "unica", sizes: ["40x30", "40x40"] },
-            { id: 4, name: "Bastidor Infinity", price: 5000, type: "unica", sizes: ["60x40"] },
-            { id: 5, name: "Bastidor Infinity", price: 8000, type: "unica", sizes: ["60x60"] },
-            { id: 6, name: "Bastidor Infinity", price: 10000, type: "unica", sizes: ["60x90"] },
-            { id: 7, name: "Imán Big Foto (Doble)", price: 6000, type: "unica", sizes: ["60x40"] },
-            { id: 8, name: "Imán Big Foto", price: 3000, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"] },
-            { id: 9, name: "Dedicatoria", price: 2500, type: "opcional", sizes: ["all"] },
-            { id: 10, name: "Carta Opalina", price: 1500, type: "opcional", sizes: ["all"] }
+            { id: 1, name: "Portarretratos", price: 2000, type: "unica", sizes: ["20x20", "20x30"], img: "portaretratos.webp", desc: "Soporte elegante que permite lucir tu Metal Print en cualquier superficie plana o mueble." },
+            { id: 2, name: "Cuñas Soporte", price: 2500, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"], img: "cunia.webp", desc: "Mantienen el efecto flotante en una posición fija de pared (horizontal o vertical)." },
+            { id: 3, name: "Bastidor Infinity", price: 4000, type: "unica", sizes: ["40x30", "40x40", "60x40", "60x60", "60x90"], img: "bastidor.webp", desc: "Acabado profesional de lujo. Su diseño versátil permite usar el cuadro tanto en posición horizontal como vertical sin cambios." },
+            { id: 7, name: "Imán BIG Foto", price: 3000, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40", "60x40"], img: "Iman.webp", desc: "Imán especial con recibidor metálico. Permite intercambiar cuadros y cambiar su orientación (horizontal/vertical) al instante." },
+            { id: 9, name: "Dedicatoria", price: 2500, type: "opcional", sizes: ["all"], desc: "Agrega un mensaje inolvidable en el reverso de la lámina para que el regalo sea verdaderamente único." },
+            { id: 10, name: "Carta Opalina", price: 1500, type: "opcional", sizes: ["all"], desc: "Impresión en papel premium opalina para acompañar la entrega de tu Metal Print." }
         ];
 
         let selectedFormat = null;
         let selectedAddons = new Set();
+        let quantity = 1;
+
+        function updateQty(val) {
+            quantity = Math.max(1, quantity + val);
+            document.getElementById('qtyNumber').innerText = quantity;
+            document.getElementById('wow-badge').style.display = quantity >= 3 ? 'block' : 'none';
+            updateTotal();
+        }
 
         function switchCategory(cat, btn) {
-            selectedFormat = null;
-            selectedAddons.clear();
+            selectedFormat = null; selectedAddons.clear(); quantity = 1;
+            document.getElementById('qtyNumber').innerText = "1";
+            document.getElementById('wow-badge').style.display = 'none';
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderFormats(cat);
-            renderOptions();
-            resetSummary();
-            checkButton();
+            document.getElementById('cat-desc').innerText = cat === 'cuadrado' ? 
+                "Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto al alinearlos (p.ej. 2 piezas cuadradas a los lados de una rectangular central)." : 
+                "Opciones rectangulares: Maximizan el espacio visual; perfectas para capturar la profundidad del entorno y composiciones amplias.";
+            renderFormats(cat); renderOptions(); resetSummary(); checkButton();
         }
 
         function renderFormats(cat) {
@@ -332,44 +296,41 @@
             container.innerHTML = '';
             formats.filter(f => f.cat === cat).forEach(f => {
                 const div = document.createElement('div');
-                div.className = `format-card ${f.master ? 'master' : ''} ${selectedFormat && selectedFormat.id === f.id ? 'active' : ''}`;
-                div.onclick = () => selectFormat(f);
-                div.innerHTML = `
-                    ${f.master ? '<span class="master-badge">CALIDAD EXHIBICIÓN</span>' : ''}
-                    <h4>${f.size} cm</h4>
-                    <span class="price">₡${f.price.toLocaleString()}</span>
-                `;
+                div.className = `format-card ${f.master ? 'master' : ''} ${selectedFormat?.id === f.id ? 'active' : ''}`;
+                div.onclick = () => { 
+                    selectedFormat = f; selectedAddons.clear(); 
+                    const auto = addons.filter(a => a.type === 'unica' && a.sizes.includes(f.size));
+                    if(auto.length === 1) selectedAddons.add(auto[0].id);
+                    renderFormats(cat); renderOptions(); updateTotal(); 
+                };
+                div.innerHTML = `${f.master ? '<span class="master-badge">CALIDAD EXHIBICIÓN</span>' : ''}<h4>${f.size} cm</h4><span class="price">₡${f.price.toLocaleString()}</span>`;
                 container.appendChild(div);
             });
-        }
-
-        function selectFormat(f) {
-            selectedFormat = f;
-            selectedAddons.clear();
-            const availableSupports = addons.filter(a => a.type === 'unica' && a.sizes.includes(f.size));
-            if (availableSupports.length === 1) {
-                selectedAddons.add(availableSupports[0].id);
-            }
-            renderFormats(f.cat);
-            renderOptions();
-            updateTotal();
         }
 
         function renderOptions() {
             const displayList = document.getElementById('display-list');
             const extrasList = document.getElementById('extras-list');
-            displayList.innerHTML = '';
-            extrasList.innerHTML = '';
+            displayList.innerHTML = ''; extrasList.innerHTML = '';
             if(!selectedFormat) return;
+
             addons.forEach(a => {
                 if (a.sizes.includes(selectedFormat.size) || a.sizes.includes('all')) {
                     const isSelected = selectedAddons.has(a.id);
                     const html = `
                         <div class="option-item ${isSelected ? 'selected' : ''}" onclick="toggleAddon(${a.id}, '${a.type}')">
-                            <span style="font-size:0.9rem;">${a.name}</span>
-                            <span style="color:var(--neon-cyan); font-weight:bold;">₡${a.price.toLocaleString()}</span>
-                        </div>
-                    `;
+                            <div class="option-main">
+                                <span style="font-size:1rem; font-weight:bold; color:#fff;">${a.name}</span>
+                                <span style="color:var(--neon-cyan); font-weight:900;">₡${a.price.toLocaleString()}</span>
+                            </div>
+                            <div style="font-size:0.85rem; color:#aaa; line-height:1.3;">${a.desc}</div>
+                            ${a.img ? `
+                                <div class="preview-thumb-container" onclick="event.stopPropagation(); document.getElementById('modalImg').src='${a.img}'; document.getElementById('imageModal').style.display='flex'">
+                                    <img src="${a.img}" class="preview-thumb">
+                                    <span class="view-label">Ampliar Acabado</span>
+                                </div>
+                            ` : ''}
+                        </div>`;
                     if (a.type === 'unica') displayList.innerHTML += html;
                     else extrasList.innerHTML += html;
                 }
@@ -378,49 +339,38 @@
         }
 
         function toggleAddon(id, type) {
-            if (type === 'unica') {
-                addons.filter(a => a.type === 'unica').forEach(a => selectedAddons.delete(a.id));
-            }
-            if (selectedAddons.has(id)) selectedAddons.delete(id);
-            else selectedAddons.add(id);
-            renderOptions();
-            updateTotal();
+            if (type === 'unica') addons.filter(a => a.type === 'unica').forEach(a => selectedAddons.delete(a.id));
+            if (selectedAddons.has(id)) selectedAddons.delete(id); else selectedAddons.add(id);
+            renderOptions(); updateTotal();
         }
 
         function checkButton() {
-            const btn = document.getElementById('order-btn');
             const hasSupport = Array.from(selectedAddons).some(id => addons.find(a => a.id === id).type === 'unica');
-            if (selectedFormat && hasSupport) {
-                btn.classList.add('enabled');
-            } else {
-                btn.classList.remove('enabled');
-            }
-        }
-
-        function resetSummary() {
-            document.getElementById('total-display').innerText = `₡0`;
-            document.getElementById('size-display').innerText = `-`;
+            const canOrder = selectedFormat && hasSupport;
+            document.getElementById('order-btn').classList.toggle('enabled', canOrder);
+            document.getElementById('qtyControl').classList.toggle('enabled', canOrder);
+            if(!canOrder) { quantity = 1; document.getElementById('qtyNumber').innerText = "1"; document.getElementById('wow-badge').style.display = 'none'; }
         }
 
         function updateTotal() {
             if(!selectedFormat) return;
-            let total = selectedFormat.price;
-            selectedAddons.forEach(id => {
-                total += addons.find(a => a.id === id).price;
-            });
-            document.getElementById('total-display').innerText = `₡${total.toLocaleString()}`;
+            let unit = selectedFormat.price;
+            selectedAddons.forEach(id => unit += addons.find(a => a.id === id).price);
+            document.getElementById('total-display').innerText = `₡${(unit * quantity).toLocaleString()}`;
             document.getElementById('size-display').innerText = `${selectedFormat.size} cm`;
         }
 
+        function resetSummary() { document.getElementById('total-display').innerText = `₡0`; document.getElementById('size-display').innerText = `-`; }
+
         function sendWhatsApp() {
-            const items = Array.from(selectedAddons).map(id => addons.find(a => a.id === id).name);
-            let total = selectedFormat.price;
-            selectedAddons.forEach(id => total += addons.find(a => a.id === id).price);
-            const msg = `¡Hola Big Foto CR! Deseo realizar un pedido:\n\n• Formato: ${selectedFormat.size}\n• Extras: ${items.join(', ') || 'Básico'}\n• Total: ₡${total.toLocaleString()}\n\nQuedo atento(a) para el diseño.`;
+            let unit = selectedFormat.price;
+            const names = Array.from(selectedAddons).map(id => { const a = addons.find(x => x.id === id); unit += a.price; return a.name; });
+            let promo = quantity >= 3 ? "\n\n🚀 *¡ME INTERESAN LOS PAQUETES DE 3 PIEZAS!*" : "";
+            const msg = `¡Hola Big Foto CR! Deseo pedir:\n\n• Cantidad: ${quantity}\n• Formato: ${selectedFormat.size} cm (${selectedFormat.cat})\n• Soporte/Extras: ${names.join(', ')}\n• Total: ₡${(unit * quantity).toLocaleString()}\n\n*Nota:* Este pedido incluye Retoque Profesional y Packaging de Lujo.${promo}`;
             window.open(`https://wa.me/50688466111?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        window.onload = () => { renderFormats('cuadrado'); renderOptions(); };
+        window.onload = () => renderFormats('cuadrado');
     </script>
 </body>
 </html>
