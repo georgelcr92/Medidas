@@ -32,11 +32,11 @@
                 radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.12) 0%, transparent 50%);
         }
 
-        header { padding: 1.5rem 1rem 0.5rem; text-align: center; flex-shrink: 0; }
+        header { padding: 1.2rem 1rem 0.5rem; text-align: center; flex-shrink: 0; }
 
         .floating-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 900;
             background: linear-gradient(90deg, #fff, var(--neon-cyan));
             -webkit-background-clip: text;
@@ -48,13 +48,12 @@
 
         @keyframes floatText { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-        /* COLOR ROSADO NEÓN PARA EL SUBTÍTULO DEL HEADER */
         header p {
             color: var(--neon-pink);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: bold;
-            margin: 10px 0 0;
-            letter-spacing: 3px;
+            margin: 8px 0 0;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
         }
@@ -62,136 +61,133 @@
         .exclusive-banner {
             background: var(--premium-gold);
             color: #000;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 900;
-            padding: 8px 0;
+            padding: 6px 0;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2);
+            letter-spacing: 1px;
         }
 
         #wow-badge {
             display: none;
             background: linear-gradient(45deg, var(--neon-pink), var(--premium-gold));
             color: #000;
-            padding: 12px;
+            padding: 10px;
             margin: 10px 1rem 0;
             border-radius: 8px;
             text-align: center;
             font-family: 'Orbitron';
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             animation: pulse 1s infinite;
         }
 
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
 
-        .category-tabs { display: flex; gap: 12px; padding: 1rem; flex-shrink: 0; }
+        .category-tabs { display: flex; gap: 10px; padding: 0.8rem 1rem; flex-shrink: 0; }
         .tab-btn {
             flex: 1; background: var(--glass); border: 1px solid var(--border);
-            color: #aaa; padding: 14px; border-radius: 10px;
-            font-family: 'Orbitron'; font-size: 0.7rem; text-transform: uppercase;
+            color: #aaa; padding: 12px; border-radius: 8px;
+            font-family: 'Orbitron'; font-size: 0.65rem; text-transform: uppercase;
         }
         .tab-btn.active { border-color: var(--neon-cyan); color: #fff; background: rgba(0, 242, 255, 0.15); }
 
         .scroll-area {
-            flex-grow: 1; overflow-y: auto; padding: 0 1rem 340px; 
-            display: flex; flex-direction: column; gap: 2.2rem;
+            flex-grow: 1; overflow-y: auto; padding: 0 1rem 240px; 
+            display: flex; flex-direction: column; gap: 2rem;
             -webkit-overflow-scrolling: touch;
         }
 
-        .section-header { margin-bottom: 1.2rem; border-left: 3px solid var(--neon-pink); padding-left: 12px; }
+        .section-header { margin-bottom: 1rem; border-left: 3px solid var(--neon-pink); padding-left: 10px; }
         .section-title {
-            font-family: 'Orbitron', sans-serif; font-size: 0.85rem;
-            color: var(--neon-pink); margin-bottom: 6px; display: block;
-            text-transform: uppercase; letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif; font-size: 0.8rem;
+            color: var(--neon-pink); margin-bottom: 4px; display: block;
+            text-transform: uppercase;
         }
-        .note-burned { font-size: 0.7rem; color: var(--neon-cyan); font-weight: 700; text-transform: uppercase; display: block; line-height: 1.3; letter-spacing: 0.5px; }
-        .desc-text { font-size: 0.85rem; color: #bbb; line-height: 1.4; margin-top: 8px; }
+        .note-burned { font-size: 0.65rem; color: var(--neon-cyan); font-weight: 700; text-transform: uppercase; display: block; line-height: 1.2; }
+        .desc-text { font-size: 0.8rem; color: #bbb; line-height: 1.3; margin-top: 6px; }
 
-        .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .format-card {
             background: var(--glass); border: 1px solid var(--border);
-            padding: 22px 10px; border-radius: 12px; text-align: center; position: relative;
+            padding: 18px 8px; border-radius: 10px; text-align: center; position: relative;
         }
         .format-card.active { border-color: var(--neon-cyan); background: rgba(0, 242, 255, 0.1); }
         .format-card.master { border-color: var(--premium-gold); }
         .master-badge {
-            position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+            position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
             background: var(--premium-gold); color: #000; font-size: 0.4rem;
-            font-weight: 900; padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+            font-weight: 900; padding: 2px 5px; border-radius: 3px; white-space: nowrap;
         }
 
-        .format-card h4 { font-size: 1rem; margin: 0 0 5px; font-weight: 700; color: #fff; }
-        .format-card .price { color: var(--neon-cyan); font-weight: 900; font-size: 0.95rem; }
+        .format-card h4 { font-size: 0.95rem; margin: 0 0 4px; font-weight: 700; color: #fff; }
+        .format-card .price { color: var(--neon-cyan); font-weight: 900; font-size: 0.9rem; }
 
-        .option-list { display: flex; flex-direction: column; gap: 8px; }
         .option-item {
             background: var(--glass); border: 1px solid var(--border);
-            padding: 20px; border-radius: 12px; display: flex;
-            flex-direction: column; gap: 12px;
+            padding: 16px; border-radius: 10px; display: flex;
+            flex-direction: column; gap: 10px;
         }
         .option-item.selected { border-color: var(--neon-cyan); background: rgba(0, 242, 255, 0.15); }
-        .option-main { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
         .preview-thumb-container {
-            display: flex; align-items: center; gap: 15px; margin-top: 10px; display: none;
-            padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px;
+            display: flex; align-items: center; gap: 12px; margin-top: 8px; display: none;
+            padding: 8px; background: rgba(0,0,0,0.4); border-radius: 8px;
         }
         .option-item.selected .preview-thumb-container { display: flex; }
-        .preview-thumb { width: 90px; height: 90px; border-radius: 8px; object-fit: cover; border: 2px solid var(--neon-cyan); }
-        .view-label { font-size: 0.65rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: bold; }
+        .preview-thumb { width: 70px; height: 70px; border-radius: 6px; object-fit: cover; border: 2px solid var(--neon-cyan); }
+        .view-label { font-size: 0.6rem; color: var(--neon-cyan); text-transform: uppercase; font-weight: bold; }
 
         footer {
             position: fixed; bottom: 0; width: 100%;
-            background: rgba(1, 1, 3, 0.98); backdrop-filter: blur(15px);
+            background: rgba(1, 1, 3, 0.96); backdrop-filter: blur(10px);
             border-top: 1px solid var(--border);
-            padding: 1.2rem 1rem calc(1.2rem + env(safe-area-inset-bottom));
+            padding: 1rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
             z-index: 20;
         }
 
         .quantity-control {
-            display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 18px;
-            opacity: 0.1; pointer-events: none; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 12px;
+            opacity: 0.1; pointer-events: none;
         }
         .quantity-control.enabled { opacity: 1; pointer-events: auto; }
         .qty-btn {
             background: var(--glass); border: 1px solid var(--neon-cyan); color: #fff;
-            width: 40px; height: 40px; border-radius: 50%; font-family: 'Orbitron'; font-size: 1.3rem;
+            width: 32px; height: 32px; border-radius: 50%; font-family: 'Orbitron'; font-size: 1.1rem;
             display: flex; justify-content: center; align-items: center;
         }
 
         .btn-order {
             width: 100%; background: var(--neon-cyan); color: #000; border: none;
-            padding: 18px; border-radius: 12px; font-family: 'Orbitron';
+            padding: 14px; border-radius: 10px; font-family: 'Orbitron';
             font-weight: 900; text-transform: uppercase; opacity: 0.3; pointer-events: none;
         }
-        .btn-order.enabled { opacity: 1; pointer-events: auto; box-shadow: 0 4px 20px rgba(0, 242, 255, 0.4); }
+        .btn-order.enabled { opacity: 1; pointer-events: auto; }
 
         #imageModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.96); z-index: 100; justify-content: center; align-items: center;
             flex-direction: column;
         }
-        #imageModal img { max-width: 85%; max-height: 75vh; border-radius: 15px; border: 3px solid var(--premium-gold); object-fit: contain; }
+        #imageModal img { max-width: 85%; max-height: 70vh; border-radius: 12px; border: 2px solid var(--premium-gold); object-fit: contain; }
     </style>
 </head>
 <body>
 
     <div id="imageModal" onclick="this.style.display='none'">
         <img id="modalImg" src="">
-        <p style="margin-top: 25px; font-family: 'Orbitron'; color: var(--neon-cyan); font-size: 0.8rem; letter-spacing: 2px;">CERRAR VISTA</p>
+        <p style="margin-top: 20px; font-family: 'Orbitron'; color: var(--neon-cyan); font-size: 0.75rem; letter-spacing: 2px;">CERRAR</p>
     </div>
 
-    <div class="exclusive-banner">ÚNICOS EN COSTA RICA: CALIDAD EXHIBICIÓN & GRAN FORMATO</div>
+    <div class="exclusive-banner">ÚNICOS EN COSTA RICA: CALIDAD EXHIBICIÓN</div>
 
     <header>
         <div class="floating-text">BIG FOTO CR</div>
         <p>METAL PRINT HD CONFIGURATOR</p>
     </header>
 
-    <div id="wow-badge">¡WOW 3!! UN BUEN CLIENTE MERECE LO MEJOR.<br>PREGUNTA POR NUESTROS PAQUETES.</div>
+    <div id="wow-badge">¡¡WOW 3!! UN BUEN CLIENTE MERECE LO MEJOR.<br>PREGUNTA POR NUESTROS PAQUETES.</div>
 
     <div class="category-tabs">
         <button class="tab-btn active" onclick="switchCategory('cuadrado', this)">Cuadrados</button>
@@ -202,8 +198,8 @@
         <section>
             <div class="section-header">
                 <span class="section-title">1. Selecciona el Formato</span>
-                <span id="cat-note" class="note-burned">METAL PRINT HD + RETOQUE PROFESIONAL + PACKAGING DE LUJO (Burbuja, Mantequilla y Caja)</span>
-                <p id="cat-desc" class="desc-text">Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto al alinearlos (p.ej. 2 piezas cuadradas a los lados de una rectangular central).</p>
+                <span id="cat-note" class="note-burned">METAL PRINT HD + RETOQUE PROFESIONAL + PACKAGING</span>
+                <p id="cat-desc" class="desc-text">Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto con rectangulares.</p>
             </div>
             <div id="format-container" class="cards-grid"></div>
         </section>
@@ -211,8 +207,7 @@
         <section>
             <div class="section-header">
                 <span class="section-title">2. Soporte de Exhibición</span>
-                <span class="note-burned">CONFIGURACIÓN DE MONTAJE PREMIUM</span>
-                <p class="desc-text">Resalta el brillo y la nitidez de tu fotografía con sistemas de montaje exclusivos.</p>
+                <span class="note-burned">SISTEMAS PREMIUM</span>
             </div>
             <div id="display-list" class="option-list"></div>
         </section>
@@ -220,8 +215,7 @@
         <section>
             <div class="section-header">
                 <span class="section-title">3. Detalles de Regalo</span>
-                <span class="note-burned">EXTRAS EMOCIONALES</span>
-                <p class="desc-text">Aumenta el impacto emocional con detalles de presentación única.</p>
+                <span class="note-burned">EXTRAS</span>
             </div>
             <div id="extras-list" class="option-list"></div>
         </section>
@@ -229,19 +223,18 @@
 
     <footer>
         <div id="qtyControl" class="quantity-control">
-            <span style="font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: bold;">Cantidad:</span>
+            <span style="font-size: 0.6rem; color: #888; text-transform: uppercase; font-weight: bold;">Cant:</span>
             <button class="qty-btn" onclick="updateQty(-1)">-</button>
-            <span id="qtyNumber" style="font-family:'Orbitron'; font-size: 1.4rem; color: var(--neon-cyan); font-weight: 900;">1</span>
+            <span id="qtyNumber" style="font-family:'Orbitron'; font-size: 1.2rem; color: var(--neon-cyan); font-weight: 900;">1</span>
             <button class="qty-btn" onclick="updateQty(1)">+</button>
         </div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <div>
-                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600;">Total Pedido</div>
-                <div id="total-display" style="font-family:'Orbitron'; font-size: 1.3rem; font-weight: 900; color: #fff;">₡0</div>
+                <div style="font-size: 0.6rem; color: #888; text-transform: uppercase;">Total</div>
+                <div id="total-display" style="font-family:'Orbitron'; font-size: 1.2rem; font-weight: 900; color: #fff;">₡0</div>
             </div>
             <div style="text-align: right;">
-                <div style="font-size: 0.65rem; color: #888; text-transform: uppercase; font-weight: 600;">Formato</div>
-                <div id="size-display" style="color: var(--neon-cyan); font-weight: bold; font-size: 1rem;">-</div>
+                <div id="size-display" style="color: var(--neon-cyan); font-weight: bold; font-size: 0.9rem;">-</div>
             </div>
         </div>
         <button id="order-btn" class="btn-order" onclick="sendWhatsApp()">Realizar Pedido</button>
@@ -260,12 +253,12 @@
         ];
 
         const addons = [
-            { id: 1, name: "Portarretratos", price: 2000, type: "unica", sizes: ["20x20", "20x30"], img: "portaretratos.webp", desc: "Soporte elegante que permite lucir tu Metal Print en cualquier superficie plana o mueble." },
-            { id: 2, name: "Cuñas Soporte", price: 2500, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"], img: "cunia.webp", desc: "Mantienen el efecto flotante en una posición fija de pared (horizontal o vertical)." },
-            { id: 3, name: "Bastidor Infinity", price: 4000, type: "unica", sizes: ["40x30", "40x40", "60x40", "60x60", "60x90"], img: "bastidor.webp", desc: "Acabado profesional de lujo. Su diseño versátil permite usar el cuadro tanto en posición horizontal como vertical sin cambios." },
-            { id: 7, name: "Imán BIG Foto", price: 3000, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40", "60x40"], img: "Iman.webp", desc: "Imán especial con recibidor metálico. Permite intercambiar cuadros y cambiar su orientación (horizontal/vertical) al instante." },
-            { id: 9, name: "Dedicatoria", price: 2500, type: "opcional", sizes: ["all"], desc: "Agrega un mensaje inolvidable en el reverso de la lámina para que el regalo sea verdaderamente único." },
-            { id: 10, name: "Carta Opalina", price: 1500, type: "opcional", sizes: ["all"], desc: "Impresión en papel premium opalina para acompañar la entrega de tu Metal Print." }
+            { id: 1, name: "Portarretratos", price: 2000, type: "unica", sizes: ["20x20", "20x30"], img: "portaretratos.webp", desc: "Soporte elegante que permite lucir su pieza en cualquier superficie plana." },
+            { id: 2, name: "Cuñas Soporte", price: 2500, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"], img: "cunia.webp", desc: "Mantiene el efecto flotante profesional en una posición fija de pared." },
+            { id: 3, name: "Bastidor Infinity", price: 4000, type: "unica", sizes: ["40x30", "40x40", "60x40", "60x60", "60x90"], img: "bastidor.webp", desc: "Acabado profesional de lujo puro con efecto flotante premium." },
+            { id: 7, name: "Imán BIG Foto", price: 3000, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40", "60x40"], img: "Iman.webp", desc: "Máxima versatilidad: Efecto flotante que permite intercambiar cuadros fácilmente a su gusto." },
+            { id: 9, name: "Dedicatoria", price: 2500, type: "opcional", sizes: ["all"], desc: "Agrega un mensaje inolvidable en el reverso de la lámina." },
+            { id: 10, name: "Carta Opalina", price: 1500, type: "opcional", sizes: ["all"], desc: "Impresión premium para elevar la experiencia del regalo." }
         ];
 
         let selectedFormat = null;
@@ -286,8 +279,8 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             document.getElementById('cat-desc').innerText = cat === 'cuadrado' ? 
-                "Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto al alinearlos (p.ej. 2 piezas cuadradas a los lados de una rectangular central)." : 
-                "Opciones rectangulares: Maximizan el espacio visual; perfectas para capturar la profundidad del entorno y composiciones amplias.";
+                "Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto con rectangulares." : 
+                "Opciones rectangulares: Maximizan el espacio visual y capturan la profundidad de paisajes y arte amplio.";
             renderFormats(cat); renderOptions(); resetSummary(); checkButton();
         }
 
@@ -303,7 +296,7 @@
                     if(auto.length === 1) selectedAddons.add(auto[0].id);
                     renderFormats(cat); renderOptions(); updateTotal(); 
                 };
-                div.innerHTML = `${f.master ? '<span class="master-badge">CALIDAD EXHIBICIÓN</span>' : ''}<h4>${f.size} cm</h4><span class="price">₡${f.price.toLocaleString()}</span>`;
+                div.innerHTML = `${f.master ? '<span class="master-badge">EXHIBICIÓN</span>' : ''}<h4>${f.size} cm</h4><span class="price">₡${f.price.toLocaleString()}</span>`;
                 container.appendChild(div);
             });
         }
@@ -319,15 +312,15 @@
                     const isSelected = selectedAddons.has(a.id);
                     const html = `
                         <div class="option-item ${isSelected ? 'selected' : ''}" onclick="toggleAddon(${a.id}, '${a.type}')">
-                            <div class="option-main">
-                                <span style="font-size:1rem; font-weight:bold; color:#fff;">${a.name}</span>
-                                <span style="color:var(--neon-cyan); font-weight:900;">₡${a.price.toLocaleString()}</span>
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-weight:bold; color:#fff; font-size:0.9rem;">${a.name}</span>
+                                <span style="color:var(--neon-cyan); font-weight:900; font-size:0.9rem;">₡${a.price.toLocaleString()}</span>
                             </div>
-                            <div style="font-size:0.85rem; color:#aaa; line-height:1.3;">${a.desc}</div>
+                            <div style="font-size:0.75rem; color:#aaa; line-height:1.2;">${a.desc}</div>
                             ${a.img ? `
                                 <div class="preview-thumb-container" onclick="event.stopPropagation(); document.getElementById('modalImg').src='${a.img}'; document.getElementById('imageModal').style.display='flex'">
                                     <img src="${a.img}" class="preview-thumb">
-                                    <span class="view-label">Ampliar Acabado</span>
+                                    <span class="view-label">Ampliar Foto</span>
                                 </div>
                             ` : ''}
                         </div>`;
@@ -349,7 +342,6 @@
             const canOrder = selectedFormat && hasSupport;
             document.getElementById('order-btn').classList.toggle('enabled', canOrder);
             document.getElementById('qtyControl').classList.toggle('enabled', canOrder);
-            if(!canOrder) { quantity = 1; document.getElementById('qtyNumber').innerText = "1"; document.getElementById('wow-badge').style.display = 'none'; }
         }
 
         function updateTotal() {
@@ -365,7 +357,7 @@
         function sendWhatsApp() {
             let unit = selectedFormat.price;
             const names = Array.from(selectedAddons).map(id => { const a = addons.find(x => x.id === id); unit += a.price; return a.name; });
-            let promo = quantity >= 3 ? "\n\n🚀 *¡ME INTERESAN LOS PAQUETES DE 3 PIEZAS!*" : "";
+            let promo = quantity >= 3 ? "\n\n🚀 *¡¡ME INTERESAN LOS PAQUETES DE 3 PIEZAS!!*" : "";
             const msg = `¡Hola Big Foto CR! Deseo pedir:\n\n• Cantidad: ${quantity}\n• Formato: ${selectedFormat.size} cm (${selectedFormat.cat})\n• Soporte/Extras: ${names.join(', ')}\n• Total: ₡${(unit * quantity).toLocaleString()}\n\n*Nota:* Este pedido incluye Retoque Profesional y Packaging de Lujo.${promo}`;
             window.open(`https://wa.me/50688466111?text=${encodeURIComponent(msg)}`, '_blank');
         }
