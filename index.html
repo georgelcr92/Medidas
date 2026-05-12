@@ -252,13 +252,32 @@
             { id: 'f8', size: '60x90', price: 59000, cat: 'rectangulo', master: true }
         ];
 
+        // Lógica de precios dinámicos para addons basados en el tamaño
+        const getAddonPrice = (addonId, size) => {
+            if (addonId === 3) { // Bastidor Infinity
+                if (size === '40x30') return 4000;
+                if (size === '40x40') return 5000;
+                if (size === '60x40') return 6000;
+                if (size === '60x60') return 8000;
+                if (size === '60x90') return 10000;
+                return 4000;
+            }
+            if (addonId === 7) { // Imán Big Foto
+                if (size === '60x40') return 6000;
+                return 3000;
+            }
+            // Precios base para otros
+            const basePrices = { 1: 2000, 2: 2500, 9: 2500, 10: 1500 };
+            return basePrices[addonId] || 0;
+        };
+
         const addons = [
-            { id: 1, name: "Portarretratos", price: 2000, type: "unica", sizes: ["20x20", "20x30"], img: "portaretratos.webp", desc: "Soporte elegante que permite lucir su pieza en cualquier superficie plana." },
-            { id: 2, name: "Cuñas Soporte", price: 2500, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"], img: "cunia.webp", desc: "Mantiene el efecto flotante profesional en una posición fija de pared." },
-            { id: 3, name: "Bastidor Infinity", price: 4000, type: "unica", sizes: ["40x30", "40x40", "60x40", "60x60", "60x90"], img: "bastidor.webp", desc: "Acabado profesional de lujo puro con efecto flotante premium." },
-            { id: 7, name: "Imán BIG Foto", price: 3000, type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40", "60x40"], img: "Iman.webp", desc: "Máxima versatilidad: Efecto flotante que permite intercambiar cuadros fácilmente a su gusto." },
-            { id: 9, name: "Dedicatoria", price: 2500, type: "opcional", sizes: ["all"], desc: "Agrega un mensaje inolvidable en el reverso de la lámina." },
-            { id: 10, name: "Carta Opalina", price: 1500, type: "opcional", sizes: ["all"], desc: "Impresión premium para elevar la experiencia del regalo." }
+            { id: 1, name: "Portarretratos", type: "unica", sizes: ["20x20", "20x30"], img: "portaretratos.webp", desc: "Soporte elegante para lucir su pieza en cualquier superficie plana." },
+            { id: 2, name: "Cuñas Soporte", type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40"], img: "cunia.webp", desc: "Mantiene el efecto flotante profesional en una posición fija de pared." },
+            { id: 3, name: "Bastidor Infinity", type: "unica", sizes: ["40x30", "40x40", "60x40", "60x60", "60x90"], img: "bastidor.webp", desc: "Acabado profesional de lujo puro con efecto flotante premium." },
+            { id: 7, name: "Imán BIG Foto", type: "unica", sizes: ["20x20", "20x30", "30x30", "40x30", "40x40", "60x40"], img: "Iman.webp", desc: "Máxima versatilidad: Efecto flotante que permite intercambiar cuadros fácilmente a su gusto." },
+            { id: 9, name: "Dedicatoria", type: "opcional", sizes: ["all"], desc: "Agrega un mensaje inolvidable en el reverso de la lámina." },
+            { id: 10, name: "Carta Opalina", type: "opcional", sizes: ["all"], desc: "Impresión premium para elevar la experiencia del regalo." }
         ];
 
         let selectedFormat = null;
@@ -278,9 +297,6 @@
             document.getElementById('wow-badge').style.display = 'none';
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            document.getElementById('cat-desc').innerText = cat === 'cuadrado' ? 
-                "Opciones cuadradas: Ideales para retratos icónicos o crear composiciones de mayor impacto con rectangulares." : 
-                "Opciones rectangulares: Maximizan el espacio visual y capturan la profundidad de paisajes y arte amplio.";
             renderFormats(cat); renderOptions(); resetSummary(); checkButton();
         }
 
@@ -310,11 +326,12 @@
             addons.forEach(a => {
                 if (a.sizes.includes(selectedFormat.size) || a.sizes.includes('all')) {
                     const isSelected = selectedAddons.has(a.id);
+                    const currentPrice = getAddonPrice(a.id, selectedFormat.size);
                     const html = `
                         <div class="option-item ${isSelected ? 'selected' : ''}" onclick="toggleAddon(${a.id}, '${a.type}')">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
                                 <span style="font-weight:bold; color:#fff; font-size:0.9rem;">${a.name}</span>
-                                <span style="color:var(--neon-cyan); font-weight:900; font-size:0.9rem;">₡${a.price.toLocaleString()}</span>
+                                <span style="color:var(--neon-cyan); font-weight:900; font-size:0.9rem;">₡${currentPrice.toLocaleString()}</span>
                             </div>
                             <div style="font-size:0.75rem; color:#aaa; line-height:1.2;">${a.desc}</div>
                             ${a.img ? `
@@ -346,19 +363,25 @@
 
         function updateTotal() {
             if(!selectedFormat) return;
-            let unit = selectedFormat.price;
-            selectedAddons.forEach(id => unit += addons.find(a => a.id === id).price);
-            document.getElementById('total-display').innerText = `₡${(unit * quantity).toLocaleString()}`;
+            let unitTotal = selectedFormat.price;
+            selectedAddons.forEach(id => {
+                unitTotal += getAddonPrice(id, selectedFormat.size);
+            });
+            document.getElementById('total-display').innerText = `₡${(unitTotal * quantity).toLocaleString()}`;
             document.getElementById('size-display').innerText = `${selectedFormat.size} cm`;
         }
 
         function resetSummary() { document.getElementById('total-display').innerText = `₡0`; document.getElementById('size-display').innerText = `-`; }
 
         function sendWhatsApp() {
-            let unit = selectedFormat.price;
-            const names = Array.from(selectedAddons).map(id => { const a = addons.find(x => x.id === id); unit += a.price; return a.name; });
+            let unitTotal = selectedFormat.price;
+            const names = Array.from(selectedAddons).map(id => { 
+                const a = addons.find(x => x.id === id); 
+                unitTotal += getAddonPrice(id, selectedFormat.size);
+                return a.name; 
+            });
             let promo = quantity >= 3 ? "\n\n🚀 *¡¡ME INTERESAN LOS PAQUETES DE 3 PIEZAS!!*" : "";
-            const msg = `¡Hola Big Foto CR! Deseo pedir:\n\n• Cantidad: ${quantity}\n• Formato: ${selectedFormat.size} cm (${selectedFormat.cat})\n• Soporte/Extras: ${names.join(', ')}\n• Total: ₡${(unit * quantity).toLocaleString()}\n\n*Nota:* Este pedido incluye Retoque Profesional y Packaging de Lujo.${promo}`;
+            const msg = `¡Hola Big Foto CR! Deseo pedir:\n\n• Cantidad: ${quantity}\n• Formato: ${selectedFormat.size} cm\n• Soporte/Extras: ${names.join(', ')}\n• Total: ₡${(unitTotal * quantity).toLocaleString()}\n\n*Nota:* Este pedido incluye Retoque Profesional y Packaging de Lujo.${promo}`;
             window.open(`https://wa.me/50688466111?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
