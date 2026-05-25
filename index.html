@@ -12,330 +12,379 @@
             --neon-pink: #ff007a;
             --neon-cyan: #00f2ff;
             --premium-gold: #ffcc00;
-            --glass: rgba(255, 255, 255, 0.06);
+            --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.12);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-black);
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
-            margin: 0; height: 100vh;
-            display: flex; flex-direction: column; overflow: hidden;
+            background-color: var(--bg-black); color: #fff; font-family: 'Rajdhani', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(255, 0, 122, 0.12) 0%, transparent 50%),
                 radial-gradient(circle at 50% 100%, rgba(0, 242, 255, 0.12) 0%, transparent 50%);
         }
 
-        header { padding: 1rem 1rem 0.4rem; text-align: center; flex-shrink: 0; }
-
+        header { padding: 2rem 1rem 0.5rem; text-align: center; }
         .floating-text {
-            font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 900;
+            font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 900;
             background: linear-gradient(90deg, #fff, var(--neon-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(255, 0, 122, 0.6));
+            filter: drop-shadow(0 0 12px rgba(255, 0, 122, 0.6));
             animation: floatText 4s ease-in-out infinite; display: inline-block;
         }
+        @keyframes floatText { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        header p { color: var(--neon-pink); font-size: 0.75rem; font-weight: bold; margin: 6px 0 0; letter-spacing: 4px; text-transform: uppercase; font-family: 'Orbitron', sans-serif; }
+        .exclusive-banner { background: var(--premium-gold); color: #000; font-size: 0.65rem; font-weight: 900; padding: 10px 0; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; }
+        
+        .main-container { max-width: 600px; margin: 0 auto; padding: 0 1rem 40px; display: flex; flex-direction: column; gap: 1.8rem; }
+        .section-header { margin-bottom: 1rem; border-left: 3px solid var(--neon-pink); padding-left: 12px; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; color: var(--neon-pink); margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        .note-burned { font-size: 0.7rem; color: var(--neon-cyan); font-weight: 700; text-transform: uppercase; display: block; line-height: 1.4; }
 
-        @keyframes floatText { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        header p { color: var(--neon-pink); font-size: 0.7rem; font-weight: bold; margin: 6px 0 0; letter-spacing: 3px; text-transform: uppercase; font-family: 'Orbitron', sans-serif; }
-        .exclusive-banner { background: var(--premium-gold); color: #000; font-size: 0.6rem; font-weight: 900; padding: 8px 0; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; flex-shrink: 0; }
+        /* BARRA DE LOGÍSTICA FLUIDA */
+        .delivery-grid { display: flex; flex-direction: column; gap: 8px; }
+        .delivery-card { background: rgba(0, 242, 255, 0.02); border: 1px dashed rgba(0, 242, 255, 0.2); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; }
+        .delivery-info p { margin: 0; font-size: 0.85rem; color: #ccc; }
+        .delivery-info strong { color: var(--neon-cyan); }
 
-        #discount-badge {
-            display: none; background: linear-gradient(45deg, var(--neon-pink), var(--premium-gold)); color: #000;
-            padding: 10px; margin: 5px 1rem 0; border-radius: 8px; text-align: center;
-            font-family: 'Orbitron'; font-weight: 900; font-size: 0.75rem; letter-spacing: 1px;
-            animation: pulse 1s infinite;
+        /* FILTROS POR LÁMINA MADRE */
+        .inspiration-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 0.5rem; }
+        .tab-insp-btn { 
+            background: var(--glass); border: 1px solid var(--border); color: #aaa; padding: 12px 4px; border-radius: 8px; 
+            font-family: 'Orbitron'; font-size: 0.62rem; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.2s; text-align: center;
         }
+        .tab-insp-btn.active { border-color: var(--neon-cyan); color: #fff; background: rgba(0, 242, 255, 0.15); box-shadow: 0 0 10px rgba(0, 242, 255, 0.15); }
+        .tab-insp-btn.gallery-active { border-color: var(--premium-gold); background: rgba(255, 204, 0, 0.03); }
+        .tab-insp-btn.gallery-active.active { color: #fff; background: rgba(255, 204, 0, 0.12); box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); }
+        .tab-insp-btn.mural-active { border-color: var(--neon-pink); background: rgba(255, 0, 122, 0.03); }
+        .tab-insp-btn.mural-active.active { color: #fff; background: rgba(255, 0, 122, 0.12); box-shadow: 0 0 10px rgba(255, 0, 122, 0.2); }
 
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-
-        .category-tabs { display: flex; gap: 12px; padding: 0.8rem 1rem 0.5rem; flex-shrink: 0; }
-        .tab-btn { flex: 1; background: var(--glass); border: 1px solid var(--border); color: #aaa; padding: 12px; border-radius: 10px; font-family: 'Orbitron'; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; }
-        .tab-btn.active { border-color: var(--neon-cyan); color: #fff; background: rgba(0, 242, 255, 0.15); }
-
-        .scroll-area { flex-grow: 1; overflow-y: auto; padding: 0 1rem 220px; display: flex; flex-direction: column; gap: 1.2rem; -webkit-overflow-scrolling: touch; }
-        .section-header { margin-bottom: 0.5rem; border-left: 3px solid var(--neon-pink); padding-left: 10px; }
-        .section-title { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: var(--neon-pink); margin-bottom: 2px; display: block; text-transform: uppercase; letter-spacing: 1px; }
-        .note-burned { font-size: 0.65rem; color: var(--neon-cyan); font-weight: 700; text-transform: uppercase; display: block; line-height: 1.3; }
-
-        .cards-grid { display: flex; flex-direction: column; gap: 10px; }
+        /* TARJETAS DE LA GALERÍA */
+        .cards-grid { display: flex; flex-direction: column; gap: 12px; }
+        .gallery-card { background: var(--glass); border: 1px solid var(--border); padding: 16px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 14px; position: relative; }
+        .gallery-card.premium-glow { border-color: var(--premium-gold); background: rgba(255, 204, 0, 0.01); }
+        .gallery-card.mural-glow { border-color: var(--neon-pink); background: rgba(255, 0, 122, 0.01); }
         
-        .product-card { background: var(--glass); border: 1px solid var(--border); padding: 14px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: 0.2s; position: relative; }
-        .product-card.has-qty { border-color: var(--neon-cyan); background: rgba(0, 242, 255, 0.03); }
-        .product-card.exhibicion { border-color: var(--premium-gold); }
+        .card-tag { position: absolute; top: -8px; left: 14px; background: var(--premium-gold); color: #000; font-size: 0.48rem; font-weight: 950; padding: 2px 8px; border-radius: 3px; font-family: 'Orbitron'; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-tag.cyan-tag { background: var(--neon-cyan); }
+        .card-tag.pink-tag { background: var(--neon-pink); color: #fff; }
         
-        .badge-premium-tag { position: absolute; top: -7px; left: 12px; background: var(--premium-gold); color: #000; font-size: 0.45rem; font-weight: 950; padding: 1px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-        .card-visuals-left { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        
+        /* CONTENEDOR DE IMAGEN LIMPIO (SIN MAXIMIZAR) */
+        .card-left-visuals { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
         .proportion-box {
             display: flex; align-items: center; justify-content: center;
-            border: 1px dashed rgba(0, 242, 255, 0.4); border-radius: 4px;
+            border: 1px dashed rgba(0, 242, 255, 0.35); border-radius: 4px;
             background: rgba(0, 242, 255, 0.02); color: var(--neon-cyan);
-            font-family: 'Orbitron'; font-size: 0.6rem; font-weight: bold; flex-shrink: 0;
+            font-family: 'Orbitron'; font-size: 0.72rem; font-weight: 900; flex-shrink: 0;
+            white-space: nowrap;
         }
-        .product-card.exhibicion .proportion-box { border-color: rgba(255, 204, 0, 0.4); color: var(--premium-gold); background: rgba(255, 204, 0, 0.02); }
-        .proportion-box.square { width: 44px; height: 44px; }
-        .proportion-box.rect-vertical { width: 34px; height: 48px; }
+        .gallery-card.premium-glow .proportion-box { border-color: rgba(255, 204, 0, 0.35); color: var(--premium-gold); }
+        .gallery-card.mural-glow .proportion-box { border-color: rgba(255, 0, 122, 0.35); color: var(--neon-pink); }
+        
+        .proportion-box.square { width: 55px; height: 55px; }
+        .proportion-box.rect-vertical { width: 42px; height: 58px; }
+        .proportion-box.mural-horiz { width: 65px; height: 48px; font-size: 0.6rem; }
 
-        .thumb-support-img { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
-        .support-text-detail { font-size: 0.8rem; color: #bbb; line-height: 1.25; flex-grow: 1; padding-right: 4px; }
-        .support-text-detail span { color: #fff; font-weight: 700; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; }
-        .support-text-detail small { color: var(--neon-cyan); font-weight: 600; display: block; margin-top: 1px; }
-        .product-card.exhibicion .support-text-detail small { color: var(--premium-gold); }
+        .card-center-info { font-size: 0.85rem; color: #ccc; line-height: 1.3; flex-grow: 1; }
+        .card-center-info span { color: #fff; font-weight: 900; font-family: 'Orbitron', sans-serif; font-size: 1.15rem; display: block; margin-bottom: 2px; }
+        .card-center-info p { margin: 0; font-size:0.8rem; color:#bbb; line-height:1.25; }
 
-        .card-action-zone { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 90px; flex-shrink: 0; }
-        .card-final-price { color: var(--neon-cyan); font-weight: 900; font-size: 1.15rem; font-family: 'Orbitron', sans-serif; margin-bottom: 2px; }
-        .product-card.exhibicion .card-final-price { color: var(--premium-gold); }
-
-        .btn-add-initial {
-            background: rgba(0, 242, 255, 0.1); border: 1px solid var(--neon-cyan); color: #fff;
-            padding: 8px 12px; border-radius: 6px; font-family: 'Orbitron'; font-size: 0.75rem;
-            font-weight: bold; cursor: pointer; width: 100%; text-align: center;
+        .card-right-action { flex-shrink: 0; }
+        
+        .btn-instant-quote {
+            background: linear-gradient(90deg, var(--neon-cyan), #00bfff); color: #000; border: none;
+            padding: 10px 14px; border-radius: 8px; font-family: 'Orbitron'; font-size: 0.72rem;
+            font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 242, 255, 0.2);
         }
-        .product-card.exhibicion .btn-add-initial { background: rgba(0, 242, 255, 0.1); border-color: var(--premium-gold); }
+        .btn-instant-quote:active { transform: scale(0.96); }
+        .gallery-card.premium-glow .btn-instant-quote { background: linear-gradient(90deg, var(--premium-gold), #e6b800); }
+        .gallery-card.mural-glow .btn-instant-quote { background: linear-gradient(90deg, var(--neon-pink), #ff3399); color: #fff; box-shadow: 0 2px 8px rgba(255, 0, 122, 0.2); }
 
-        .touch-qty-picker { display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.5); border-radius: 6px; border: 1px solid var(--neon-cyan); width: 100%; overflow: hidden; }
-        .product-card.exhibicion .touch-qty-picker { border-color: var(--premium-gold); }
-        .touch-btn { background: transparent; border: none; color: #fff; padding: 8px 12px; font-family: 'Orbitron'; font-size: 1rem; font-weight: bold; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center; }
-        .touch-btn:active { background: rgba(255,255,255,0.1); }
-        .touch-num { font-family: 'Orbitron'; font-size: 0.9rem; color: #fff; font-weight: 900; padding: 0 4px; }
+        /* SECCIÓN DE SOPORTES CON ZOOM CONSERVADO */
+        .support-row { background: var(--glass); border: 1px solid var(--border); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; }
+        .support-img-box { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; cursor: pointer; }
+        
+        .support-img-container { position: relative; flex-shrink: 0; }
+        .support-img-container::after {
+            content: "🔍"; position: absolute; bottom: -2px; right: -2px; font-size: 0.55rem;
+            background: rgba(0,0,0,0.7); padding: 1px 3px; border-radius: 3px; pointer-events: none;
+        }
 
-        .option-list { display: flex; flex-direction: column; gap: 8px; }
-        .option-item { background: var(--glass); border: 1px solid var(--border); padding: 14px 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .option-item.selected { border-color: var(--neon-cyan); background: rgba(0, 242, 255, 0.1); }
-        .extra-check { width: 20px; height: 20px; border-radius: 4px; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #000; }
-        .option-item.selected .extra-check { border-color: var(--neon-cyan); background: var(--neon-cyan); }
+        .support-info { flex-grow: 1; }
+        .support-info h5 { margin: 0; font-family: 'Orbitron'; font-size: 0.85rem; color: var(--neon-cyan); text-transform: uppercase; }
+        .support-info p { margin: 2px 0 0; font-size: 0.78rem; color: #aaa; line-height: 1.25; }
 
-        footer { position: fixed; bottom: 0; width: 100%; background: rgba(1, 1, 3, 0.98); backdrop-filter: blur(15px); border-top: 1px solid var(--border); padding: 1rem 1rem calc(0.8rem + env(safe-area-inset-bottom)); z-index: 20; }
-        .btn-order { width: 100%; background: var(--neon-cyan); color: #000; border: none; padding: 16px; border-radius: 12px; font-family: 'Orbitron'; font-weight: 900; text-transform: uppercase; opacity: 0.3; pointer-events: none; cursor: pointer; }
-        .btn-order.enabled { opacity: 1; pointer-events: auto; box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3); }
+        /* FOOTER GLOBAL DE ASESORÍA */
+        .global-footer-banner { background: rgba(255, 0, 122, 0.05); border: 1px solid rgba(255, 0, 122, 0.2); padding: 14px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .global-footer-banner:active { background: rgba(255, 0, 122, 0.1); border-color: var(--neon-pink); }
+        .global-footer-banner h4 { margin: 0; font-family: 'Orbitron'; font-size: 0.9rem; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .global-footer-banner p { margin: 4px 0 0; font-size: 0.8rem; color: var(--neon-pink); font-weight: bold; text-transform: uppercase; }
+
+        /* MODAL PREVIEW EXCLUSIVO PARA FOTOS DE SOPORTES */
+        .preview-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(1, 1, 3, 0.96); z-index: 1000; align-items: center; justify-content: center;
+            backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.25s ease;
+        }
+        .preview-modal.open { display: flex; opacity: 1; }
+        
+        .modal-content-box {
+            background: rgba(20, 20, 25, 0.9); border: 2px solid var(--border); border-radius: 16px;
+            padding: 24px; text-align: center; max-width: 90%; width: 340px; position: relative;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        
+        .modal-close-btn { position: absolute; top: 12px; right: 16px; font-family: 'Orbitron'; font-size: 1.2rem; color: #aaa; cursor: pointer; font-weight: 900; z-index: 10; }
+        
+        .modal-pure-img {
+            width: 100%; max-height: 240px; object-fit: contain; 
+            border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-top: 20px;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2));
+        }
+
+        .modal-title { font-family: 'Orbitron'; font-size: 1.3rem; color: #fff; margin: 0; text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px; }
+        .modal-desc { font-size: 0.85rem; color: #aaa; line-height: 1.4; margin: 5px 0 0; padding: 0 10px; }
     </style>
 </head>
 <body>
 
-    <div class="exclusive-banner">ÚNICOS EN COSTA RICA: CALIDAD EXHIBICIÓN & GRAN FORMATO</div>
+    <div class="exclusive-banner">CALIDAD EXHIBICIÓN DE GALERÍA • CONFECCIÓN PREMIUM EN LÁMINAS INDUSTRIALES</div>
 
     <header>
         <div class="floating-text">BIG FOTO CR</div>
-        <p>METAL PRINT HD CONFIGURATOR</p>
+        <p>METAL PRINT SHOWROOM</p>
     </header>
 
-    <div id="discount-badge">¡¡APLICA 15% DE DESCUENTO EN LÁMINAS (3+ PIEZAS EN TOTAL)!!</div>
+    <div class="main-container">
 
-    <div class="category-tabs">
-        <button id="tab-cuadrado-btn" class="tab-btn active" onclick="switchCategory('cuadrado', this)">Cuadrados</button>
-        <button id="tab-rectangulo-btn" class="tab-btn" onclick="switchCategory('rectangulo', this)">Rectangulares</button>
-    </div>
+        <!-- LOGÍSTICA -->
+        <section class="delivery-grid">
+            <div class="delivery-card">
+                <div class="delivery-info">
+                    <p>⚡ <strong>¡Listo en solo 3 días!</strong> Confección local de alta velocidad.</p>
+                </div>
+            </div>
+            <div class="delivery-card">
+                <div class="delivery-info">
+                    <p>🚗 Envíos exprés por <strong>Uber Flash (GAM)</strong> o a todo destino por <strong>Correos de CR</strong>.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="scroll-area">
+        <!-- PORTAFOLIO SEGÚN FORMATO DE LÁMINA MADRE -->
         <section>
             <div class="section-header">
-                <span class="section-title">1. TAMAÑOS Y SOPORTE</span>
-                <span class="note-burned">INCLUYE RETOQUE PROFESIONAL + EMPAQUE DE LUJO + SOPORTE + IMPRESION EN LAMINA HD</span>
+                <span class="section-title">Explora Nuestras Líneas de Confección</span>
+                <span class="note-burned">RECUADROS ILUSTRATIVOS DE PROPORCIÓN GEOMÉTRICA</span>
             </div>
-            <div id="product-container" class="cards-grid"></div>
+
+            <div class="inspiration-tabs">
+                <button id="tab-chroma" class="tab-insp-btn active" onclick="switchLumina('chroma', this)">Aluminio HD</button>
+                <button id="tab-gallery" class="tab-insp-btn gallery-active" onclick="switchLumina('gallery', this)">Aluminio Premium</button>
+                <button id="tab-mural" class="tab-insp-btn mural-active" onclick="switchLumina('mural', this)">Murales Multilámina</button>
+            </div>
+
+            <div id="gallery-container" class="cards-grid"></div>
         </section>
 
-        <section id="extras-section">
+        <!-- TECNOLOGÍAS DE SOPORTE - INTERACTIVIDAD EXCLUSIVA AQUÍ -->
+        <section>
             <div class="section-header">
-                <span class="section-title">2. Dedicatorias</span>
-                <span class="note-burned">DETALLES ADICIONALES</span>
+                <span class="section-title">TECNOLOGÍAS DE MONTAJE Y SOPORTE</span>
+                <span class="note-burned">TOQUE LA FOTO PEQUEÑA DEL SOPORTE PARA AGRANDARLA Y REVISAR SU ESTRUCTURA</span>
             </div>
-            <div id="extras-list" class="option-list"></div>
+            <div class="delivery-grid" style="gap:10px;">
+                <div class="support-row">
+                    <div class="support-img-container" onclick="openImageModal('Patilla Trasera Estilizada', 'portaretratos.webp', 'Soporte de mesa ideal para lucir tus láminas sobre escritorios, estantes o mesitas de noche de forma elegante.')">
+                        <img src="portaretratos.webp" class="support-img-box" alt="Mesa">
+                    </div>
+                    <div class="support-info">
+                        <h5>Patilla Trasera Estilizada</h5>
+                        <p>Soporte de mesa ideal para lucir tus láminas sobre escritorios, estantes o mesitas de noche.</p>
+                    </div>
+                </div>
+                <div class="support-row">
+                    <div class="support-img-container" onclick="openImageModal('Sistema Magnético Invisible', 'Iman.webp', 'Sujeción oculta para pared que genera un efecto flotante limpio y permite intercambiar tus artes con total comodidad en segundos.')">
+                        <img src="Iman.webp" class="support-img-box" alt="Imán">
+                    </div>
+                    <div class="support-info">
+                        <h5>Sistema Magnético Invisible</h5>
+                        <p>Sujeción oculta para pared que genera un efecto flotante limpio y permite intercambiar tus artes con total comodidad.</p>
+                    </div>
+                </div>
+                <div class="support-row">
+                    <div class="support-img-container" onclick="openImageModal('Bastidor Infinity Estructural', 'bastidor.webp', 'Marco de aluminio trasero oculto. Aporta resistencia estructural extrema y la máxima elegancia flotante suspendida en pared estilo galería.')">
+                        <img src="bastidor.webp" class="support-img-box" alt="Bastidor">
+                    </div>
+                    <div class="support-info">
+                        <h5>Bastidor Infinity Estructural</h5>
+                        <p>Marco de aluminio trasero oculto. Aporta resistencia estructural extrema y máxima elegancia suspendida en pared.</p>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <!-- DETALLES EXTRA -->
+        <section>
+            <div class="section-header">
+                <span class="section-title">Adicionales para elevar la experiencia</span>
+                <span class="note-burned">DETALLES DE ALTA GAMA</span>
+            </div>
+            <div class="delivery-grid" style="gap:8px;">
+                <div class="delivery-card" style="border:1px solid var(--border); background:none;">
+                    <div class="delivery-info"><p>✒️ <strong>Dedicatoria Trasera Impresa:</strong> Tu mensaje especial fijado de por vida en el reverso metálico de la pieza.</p></div>
+                </div>
+                <div class="delivery-card" style="border:1px solid var(--border); background:none;">
+                    <div class="delivery-info"><p>📜 <strong>Carta Opalina Texturizada:</strong> Impresión premium complementaria para elevar al máximo la apertura de un regalo.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER DE CIERRE -->
+        <footer style="position:static; padding:0; background:none; border:none; margin-top:0.5rem;">
+            <div class="global-footer-banner" onclick="sendWhatsAppGlobal()">
+                <h4>¿Tienes una idea mixta o tamaños combinados?</h4>
+                <p>¡Toca aquí para recibir asesoría de diseño a la medida!</p>
+            </div>
+        </footer>
+
     </div>
 
-    <footer>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-            <div>
-                <div style="font-size: 0.6rem; color: #888; text-transform: uppercase; font-weight: 600;">Resumen del Pedido</div>
-                <div id="total-display" style="font-family:'Orbitron'; font-size: 1.3rem; font-weight: 900; color: #fff;">₡0</div>
-            </div>
-            <div style="text-align: right;">
-                <div id="size-display" style="color: var(--neon-cyan); font-weight: bold; font-size: 0.95rem;">0 unidades</div>
-            </div>
+    <!-- MODAL DE PREVIEW PARA FOTOS REALES (SOLO SOPORTES) -->
+    <div id="zoom-modal" class="preview-modal" onclick="closeModal()">
+        <div class="modal-content-box" onclick="event.stopPropagation()">
+            <span class="modal-close-btn" onclick="closeModal()">✕</span>
+            <div id="modal-title" class="modal-title">Detalle</div>
+            <div id="modal-desc" class="modal-desc">Descripción</div>
+            <img id="modal-pure-img" class="modal-pure-img" src="" alt="Preview">
         </div>
-        <button id="order-btn" class="btn-order" onclick="sendWhatsApp()">Realizar Pedido</button>
-    </footer>
+    </div>
 
     <script>
-        const products = [
-            // CUADRADOS
-            { uniqueId: 'f1_p', size: '20x20', finalPrice: 10000, cat: 'cuadrado', propClass: 'square', supportName: "Portarretratos", supportImg: "portaretratos.webp", desc: "Patilla para mesa o escritorio." },
-            { uniqueId: 'f1_i', size: '20x20', finalPrice: 11000, cat: 'cuadrado', propClass: 'square', supportName: "Imán BIG Foto", supportImg: "Iman.webp", desc: "Sistema magnético con efecto flotante para pared." },
-            { uniqueId: 'f2_i', size: '30x30', finalPrice: 15000, cat: 'cuadrado', propClass: 'square', supportName: "Imán BIG Foto", supportImg: "Iman.webp", desc: "Sistema magnético con efecto flotante para pared." },
-            { uniqueId: 'f3_i', size: '40x40', finalPrice: 23000, cat: 'cuadrado', propClass: 'square', supportName: "Imán BIG Foto", supportImg: "Iman.webp", desc: "Sistema magnético con efecto flotante para pared." },
-            { uniqueId: 'f4_i', size: '60x60', finalPrice: 57000, cat: 'cuadrado', propClass: 'square', supportName: "Imán BIG Foto", supportImg: "Iman.webp", desc: "Sistema magnético con efecto flotante para pared.", badge: "Exhibición" },
-            
-            // RECTANGULARES
-            { uniqueId: 'f5_p', size: '20x30', finalPrice: 12000, cat: 'rectangulo', propClass: 'rect-vertical', supportName: "Portarretratos", supportImg: "portaretratos.webp", desc: "Patilla para mesa o escritorio." },
-            { uniqueId: 'f5_i', size: '20x30', finalPrice: 13000, cat: 'rectangulo', propClass: 'rect-vertical', supportName: "Imán BIG Foto", supportImg: "Iman.webp", desc: "Sistema magnético con efecto flotante para pared." },
-            { uniqueId: 'f6_b', size: '40x30', finalPrice: 19000, cat: 'rectangulo', propClass: 'rect-vertical', supportName: "Bastidor Infinity", supportImg: "bastidor.webp", desc: "Marco trasero que le brinda más resistencia y elegancia a la lámina." },
-            { uniqueId: 'f7_b', size: '60x40', finalPrice: 25000, cat: 'rectangulo', propClass: 'rect-vertical', supportName: "Bastidor Infinity", supportImg: "bastidor.webp", desc: "Marco trasero que le brinda más resistencia y elegancia a la lámina." },
-            { uniqueId: 'f8_b', size: '60x90', finalPrice: 69000, cat: 'rectangulo', propClass: 'rect-vertical', supportName: "Bastidor Infinity", supportImg: "bastidor.webp", desc: "Marco trasero que le brinda más resistencia y elegancia a la lámina.", badge: "Exhibición" }
-        ];
-
-        const extrasDataset = {
-            9: { name: "Dedicatoria", price: 2500, desc: "Agrega un mensaje inolvidable en el reverso de la lámina." },
-            10: { name: "Carta Opalina", price: 2000, desc: "Impresión premium para elevar la experiencia del regalo." }
+        const luminaData = {
+            chroma: [
+                { size: "20x20", desc: "Formato cuadrado compacto. El balance perfecto para coleccionar setups de anime o retratos familiares sobre mesas y repisas.", tag: "Popular Escritorio" },
+                { size: "20x30", desc: "Proporción rectangular estándar. Ideal para paneles de manga continuos, composiciones modulares y fotografías verticales familiares." },
+                { size: "30x30", desc: "Corte simétrico de nivel medio. Excelente para destacar ilustraciones de alto contraste o fotos nítidas de mascotas.", tag: "Más Buscado" },
+                { size: "40x30", desc: "El formato horizontal clásico de fotografía. Un tamaño ideal para lucir paisajes o arte digital en dormitorios y pasillos." },
+                { size: "40x40", desc: "Formato imperial simétrico de excelente rango visual. Una presencia geométrica impecable y audaz para decoraciones modernas.", tag: "Estilo Vanguardia" },
+                { size: "60x40 cm", desc: "La escala máxima de nuestra lámina de Aluminio HD. Impacto visual imponente diseñado para destacar en cualquier habitación o setup de gaming.", badge: true, tag: "Límite Aluminio HD" }
+            ],
+            gallery: [
+                { size: "60x60 cm", desc: "Corte monumental cuadrado de gran presencia. Diseñado de forma óptima para transformar salas de estar, oficinas o estudios profesionales.", badge: true, tag: "Exhibición Top" },
+                { size: "60x90 cm", desc: "La escala absoluta en una sola lámina de galería Premium. Impacto cinematográfico masivo para las paredes principales de tu hogar.", badge: true, tag: "Edición Máster Individual" }
+            ],
+            mural: [
+                { size: "Conjunto Collage Galería", desc: "Combinación de varios tamaños independientes en una sola pared. Ejemplo: 1 pieza de 60x40 cm central + 2 láminas laterales de 30x30 cm. Ideal para contar historias familiares o exhibiciones temáticas mixtas.", badge: true, tag: "Mural de Conjunto" },
+                { size: "Mural Segmentado de Gran Formato", desc: "Dividimos una sola imagen de forma exacta en 2, 3 o más láminas coordinadas con calzadura milimétrica. Ideal para panorámicas. Aplicamos un aumento de resolución profesional asistido por software para garantizar nitidez total. (Ejemplos alcanzados: 120x60 cm y 140x60 cm).", badge: true, tag: "Gran Formato Infinito" }
+            ]
         };
 
-        let cart = {}; 
-        let selectedExtras = new Set();
-        let currentCategory = 'cuadrado';
+        let activeLumina = 'chroma';
 
-        function changeQty(uniqueId, change) {
-            const currentQty = cart[uniqueId] || 0;
-            const newQty = Math.max(0, currentQty + change);
-            
-            if (newQty === 0) {
-                delete cart[uniqueId];
-            } else {
-                cart[uniqueId] = newQty;
-            }
-            
-            renderProducts(currentCategory);
-            updateTotal();
-        }
-
-        function switchCategory(cat, btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        function switchLumina(category, btn) {
+            document.querySelectorAll('.tab-insp-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentCategory = cat;
-            renderProducts(cat);
+            activeLumina = category;
+            renderShowroom(category);
         }
 
-        function renderProducts(cat) {
-            const container = document.getElementById('product-container');
+        function renderShowroom(category) {
+            const container = document.getElementById('gallery-container');
             container.innerHTML = '';
             
-            products.filter(p => p.cat === cat).forEach(p => {
-                const qty = cart[p.uniqueId] || 0;
-                const hasQty = qty > 0;
+            const items = luminaData[category];
+            
+            items.forEach(item => {
+                let divCardClass = 'gallery-card';
+                let tagColorClass = 'cyan-tag';
+                
+                if (category === 'gallery') {
+                    divCardClass = `gallery-card ${item.badge ? 'premium-glow' : ''}`;
+                    tagColorClass = '';
+                } else if (category === 'mural') {
+                    divCardClass = `gallery-card ${item.badge ? 'mural-glow' : ''}`;
+                    tagColorClass = 'pink-tag';
+                }
                 
                 const div = document.createElement('div');
-                div.className = `product-card ${p.badge ? 'exhibicion' : ''} ${hasQty ? 'has-qty' : ''}`;
+                div.className = divCardClass;
                 
-                let actionHTML = '';
-                if (!hasQty) {
-                    actionHTML = `<button class="btn-add-initial" onclick="changeQty('${p.uniqueId}', 1)">AÑADIR</button>`;
-                } else {
-                    actionHTML = `
-                        <div class="touch-qty-picker">
-                            <button class="touch-btn" onclick="changeQty('${p.uniqueId}', -1)">-</button>
-                            <span class="touch-num">${qty}</span>
-                            <button class="touch-btn" onclick="changeQty('${p.uniqueId}', 1)">+</button>
-                        </div>`;
-                }
+                const isSquare = item.size.includes('20x20') || item.size.includes('30x30') || item.size.includes('40x40') || item.size.includes('60x60');
+                const isMuralRow = category === 'mural';
+                
+                let propClass = 'rect-vertical';
+                if (isSquare) propClass = 'square';
+                if (isMuralRow) propClass = 'mural-horiz';
+                
+                const labelSize = item.size.replace('Mural Segmentado de ', '').replace('Conjunto ', '');
 
+                // Se eliminó el onclick y el estilo cursor de puntero de los recuadros de formato izquierdo
                 div.innerHTML = `
-                    ${p.badge ? `<span class="badge-premium-tag">${p.badge}</span>` : ''}
-                    <div class="card-visuals-left">
-                        <div class="proportion-box ${p.propClass}">${p.size}</div>
-                        <img src="${p.supportImg}" class="thumb-support-img" alt="Soporte">
+                    ${item.tag ? `<span class="card-tag ${tagColorClass}">${item.tag}</span>` : ''}
+                    <div class="card-left-visuals">
+                        <div class="proportion-box ${propClass}">${labelSize}</div>
                     </div>
-                    <div class="support-text-detail">
-                        <span>${p.size} cm</span> <small>${p.supportName}</small>
-                        <div style="font-size:0.75rem; color:#fff; margin-top:2px;">${p.desc}</div>
+                    <div class="card-center-info">
+                        <span>${item.size}</span>
+                        <p>${item.desc}</p>
                     </div>
-                    <div class="card-action-zone">
-                        <span class="card-final-price">₡${p.finalPrice.toLocaleString()}</span>
-                        ${actionHTML}
+                    <div class="card-right-action">
+                        <button class="btn-instant-quote" onclick="sendWhatsAppLumina('${item.size}', '${activeLumina}')">Cotizar</button>
                     </div>`;
                 container.appendChild(div);
             });
         }
 
-        function renderExtras() {
-            const eList = document.getElementById('extras-list');
-            eList.innerHTML = '';
-
-            [9, 10].forEach(id => {
-                const a = extrasDataset[id];
-                const isSelected = selectedExtras.has(id);
-                eList.innerHTML += `
-                    <div class="option-item ${isSelected ? 'selected' : ''}" onclick="toggleExtra(${id})">
-                        <div style="display:flex; flex-direction:column; gap:2px; max-width:75%;">
-                            <span style="font-weight:bold; color:#fff; font-size:0.95rem;">${a.name}</span>
-                            <span style="font-size:0.8rem; color:#aaa; line-height:1.2;">${a.desc}</span>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--neon-cyan); font-weight:900; font-family:'Orbitron'; font-size:0.95rem;">₡${a.price.toLocaleString()}</span>
-                            <div class="extra-check">${isSelected ? '✓' : ''}</div>
-                        </div>
-                    </div>`;
-            });
-            checkButton();
+        // EL MODAL AHORA SÓLO RESPONDE A LAS COMPROBACIONES DE FOTOS DE SOPORTES
+        function openImageModal(title, imgSrc, desc) {
+            const modal = document.getElementById('zoom-modal');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            
+            const pureImg = document.getElementById('modal-pure-img');
+            pureImg.src = imgSrc;
+            
+            modal.classList.add('open');
         }
 
-        function toggleExtra(id) {
-            if (selectedExtras.has(id)) selectedExtras.delete(id); else selectedExtras.add(id);
-            renderExtras();
-            updateTotal();
+        function closeModal() {
+            document.getElementById('zoom-modal').classList.remove('open');
         }
 
-        function checkButton() {
-            const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
-            const canOrder = totalItems > 0;
-            document.getElementById('order-btn').classList.toggle('enabled', canOrder);
-        }
-
-        function updateTotal() {
-            let totalLaminasCount = 0;
-            let laminasCostRaw = 0;
-
-            Object.keys(cart).forEach(id => {
-                const qty = cart[id];
-                const p = products.find(x => x.uniqueId === id);
-                totalLaminasCount += qty;
-                laminasCostRaw += (p.finalPrice * qty);
-            });
-
-            let laminasCostCalculated = laminasCostRaw;
-            if (totalLaminasCount >= 3) {
-                laminasCostCalculated = laminasCostRaw * 0.85; 
-                document.getElementById('discount-badge').style.display = 'block';
-            } else {
-                document.getElementById('discount-badge').style.display = 'none';
+        function sendWhatsAppLumina(size, line) {
+            let lineText = "";
+            let msgExtra = "";
+            
+            if (line === 'chroma') {
+                lineText = "Línea de Aluminio HD";
+            } else if (line === 'gallery') {
+                lineText = "Línea de Aluminio Premium";
+            } else if (line === 'mural') {
+                lineText = "Sección de Murales Multilámina";
+                if (size.includes('Collage')) {
+                    msgExtra = " Me llamó la atención la idea de hacer un Conjunto Collage combinando varios tamaños (como el de 60x40 + dos de 30x30) para armar una galería bien bonita en mi pared.";
+                } else {
+                    msgExtra = " Me interesa la técnica de Mural Segmentado de Gran Formato para dividir una sola imagen en varias láminas con aumento de resolución para que quede a escala masiva.";
+                }
             }
 
-            let extrasCost = 0;
-            selectedExtras.forEach(id => extrasCost += extrasDataset[id].price);
-
-            const totalFinal = Math.round(laminasCostCalculated + extrasCost);
-
-            document.getElementById('total-display').innerText = `₡${totalFinal.toLocaleString()}`;
-            document.getElementById('size-display').innerText = `${totalLaminasCount} unidades`;
-            checkButton();
+            const msg = `¡Hola Big Foto CR! Estuve revisando su showroom virtual y me interesa recibir información y cotización para un proyecto en [${size}] de la ${lineText}.${msgExtra} ¿Cómo podríamos coordinar los diseños? ¡Muchas gracias!`;
+            window.open('https://wa.me/50688466111?text=' + encodeURIComponent(msg), '_blank');
         }
 
-        function sendWhatsApp() {
-            let totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
-            let totalDisplay = document.getElementById('total-display').innerText;
-            
-            let itemsBreakdown = "";
-            Object.keys(cart).forEach(id => {
-                const qty = cart[id];
-                const p = products.find(x => x.uniqueId === id);
-                itemsBreakdown += `• ${p.size} cm [${p.supportName}] x${qty}\n`;
-            });
-
-            const chosenExtras = Array.from(selectedExtras).map(id => extrasDataset[id].name);
-            const extrasText = chosenExtras.length > 0 ? `\n• Adicionales: ${chosenExtras.join(', ')}` : '';
-            
-            let promoNote = totalItems >= 3 ? "\n🔥 *¡Aplica Pack Especial: 15% de Descuento Incluido!*" : "";
-
-            // TEXTO DE NOTA ACTUALIZADO A "EMPAQUE DE LUJO"
-            const msg = `¡Hola Big Foto CR! Deseo realizar este pedido multi-tamaño:\n\n${itemsBreakdown}${extrasText}\n• Cantidad Total: ${totalItems} piezas\n• Total Pedido: ${totalDisplay}${promoNote}\n\n*Nota:* Incluye Retoque Profesional y Empaque de Lujo.`;
+        function sendWhatsAppGlobal() {
+            const msg = `¡Hola Big Foto CR! Estuve viendo sus opciones de Aluminio HD, Premium y los sistemas de Murales (tanto combos de Conjuntos como divisiones de Gran Formato). Me interesa recibir asesoría personalizada para un diseño a la medida de mis paredes. ¿Cómo coordinamos? ¡Saludos!`;
             window.open('https://wa.me/50688466111?text=' + encodeURIComponent(msg), '_blank');
         }
 
         window.onload = () => {
-            renderProducts('cuadrado');
-            renderExtras();
+            renderShowroom('chroma');
         };
     </script>
 </body>
